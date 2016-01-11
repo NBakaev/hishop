@@ -8,3 +8,6 @@ Components:
  - Java 8
  - Spring 4 & Spring Boot 1.3
  - MongoDB 3 (NoSQL database)
+
+
+http://localhost:5555/swagger-ui.html
