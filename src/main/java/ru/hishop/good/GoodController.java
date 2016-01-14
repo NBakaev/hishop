@@ -1,12 +1,8 @@
-package ru.hishop.home;
+package ru.hishop.good;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.hishop.entity.Good;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -20,14 +16,13 @@ import java.util.List;
 public class GoodController {
 
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private GoodRepository goodRepository;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public
     @ResponseBody
-    Good addNewGood( @RequestBody Good good, HttpServletRequest request) {
-       mongoTemplate.insert(good);
-
+    Good addNewGood(@RequestBody Good good, HttpServletRequest request) {
+        goodRepository.createNewGood(good);
         return good;
     }
 
@@ -35,27 +30,27 @@ public class GoodController {
     public
     @ResponseBody
     List<Good> getAllGoods() {
-
-        Criteria criteria = new Criteria();
-        Query query = new Query(criteria);
-
-        return mongoTemplate.find(query, Good.class);
+        return goodRepository.getAllGoods();
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public
     @ResponseBody
-    Good updateGood( @RequestBody Good good, HttpServletRequest request) {
-        mongoTemplate.save(good);
+    Good updateGood(@RequestBody Good good, HttpServletRequest request) {
+        goodRepository.updateGood(good);
         return good;
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void deleteGoodById(@PathVariable("id") String id) {
+        goodRepository.deleteGoodById(id);
+    }
+
+    @RequestMapping(value = "category/index", method = RequestMethod.GET)
     public
-    void deleteGoodById(@PathVariable("id") String id) {
-        Good good = new Good();
-        good.setId(id);
-        mongoTemplate.remove(good);
+    @ResponseBody
+    List<Good> getAllGoodsInIndexPage() {
+        return goodRepository.getAllGoodsOnIndexPage();
     }
 
 }

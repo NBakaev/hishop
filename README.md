@@ -11,3 +11,4 @@ Components:
 
 
 http://localhost:5555/swagger-ui.html
+http://hishop.herokuapp.com/

@@ -1,8 +1,7 @@
-package ru.hishop.entity;
+package ru.hishop.home;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
@@ -11,13 +10,12 @@ import java.util.Date;
  * All Rights Reserved
  */
 
-@Document
 public class RootClass {
 
     @Id
     private String id = new ObjectId().toString();
 
-    private String name = "OLO";
+    private String name = "UNRESOLVED_ADDRESS";
     private Date date = new Date();
 
 
