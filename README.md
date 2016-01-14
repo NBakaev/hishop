@@ -9,6 +9,11 @@ Components:
  - Spring 4 & Spring Boot 1.3
  - MongoDB 3 (NoSQL database)
 
+Files:
 
-http://localhost:5555/swagger-ui.html
-http://hishop.herokuapp.com
+ - `Procfile` - Heroku (PaaS) configuration 
+
+Notes:
+
+ - `http://localhost:5555/swagger-ui.html` - all REST endpoints
+ - `http://hishop.herokuapp.com` - test appication here
