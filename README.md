@@ -8,10 +8,11 @@ Components:
  - Java 8
  - Spring 4 & Spring Boot 1.3
  - MongoDB 3 (NoSQL database)
-
+ - AngularJS
 Files:
 
  - `Procfile` - Heroku (PaaS) configuration 
+ - All AngularJS (`src/main/resources/static`)
 
 Notes:
 
