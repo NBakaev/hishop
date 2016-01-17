@@ -12,7 +12,7 @@ import java.util.List;
  * All Rights Reserved
  */
 @Controller
-@RequestMapping("/good")
+@RequestMapping("/api/v1/good")
 public class GoodController {
 
     @Autowired

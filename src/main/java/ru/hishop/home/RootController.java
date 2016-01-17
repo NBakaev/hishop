@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * to check that all is right
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/api/v1/")
 public class RootController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)

@@ -12,7 +12,7 @@ import java.util.List;
  * All Rights Reserved
  */
 @Controller
-@RequestMapping("/purchase")
+@RequestMapping("/api/v1/purchase")
 public class PurchaseOrderController {
 
     @Autowired
