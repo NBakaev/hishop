@@ -16,6 +16,8 @@ Files:
 
 Notes:
 
+ - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
+
 Вместо `http://hishop.herokuapp.com` можно использовать `http://localhost:5555/` разрабатывая на локальной машине
 
  - `http://hishop.herokuapp.com` - test appication here (index)
