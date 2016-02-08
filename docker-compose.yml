@@ -1,0 +1,18 @@
+mongodb:
+  image: mongo:3.2.0
+  ports:
+    - "27017:27017"
+  command: mongod --smallfiles
+
+restfulservice:
+  image: java:openjdk-8u45-jdk
+  working_dir: /app
+  volumes:
+    - spring-boot-restful-service/build/libs:/app
+  command: java -jar /app/spring-boot-restful-service.jar --spring.profiles.active=production
+  ports:
+    - "8081:8080"
+  links:
+    - mongodb
+  environment:
+    SPRING_DATA_MONGODB_URI: mongodb://mongodb/userregistration
