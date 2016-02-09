@@ -1,8 +1,9 @@
-package ru.hishop.good;
+package tk.hishopapp.good;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.hishop.entity.BasicClassAbstract;
+import tk.hishopapp.entity.BasicClassAbstract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 @Document
+@ApiModel("Good")
 public class Good extends BasicClassAbstract {
 
     @ApiModelProperty("Price of good as double")

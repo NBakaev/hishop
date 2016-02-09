@@ -1,5 +1,6 @@
-package ru.hishop.entity;
+package tk.hishopapp.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,13 +12,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * This is basic object which is stored in database
+ * And every entity in the database collection extends this class
  */
 @Document
 public abstract class BasicClassAbstract {
 
     @Id
+    @ApiModelProperty("unique id of document")
     private String id = new ObjectId().toString();
 
+    @ApiModelProperty("user-friendly name of document")
     private String name = null;
 
     private CreatedInfo createdInfo = new CreatedInfo();

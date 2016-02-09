@@ -1,4 +1,4 @@
-package ru.hishop.Configs;
+package tk.hishopapp.configs;
 
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/11/2016.

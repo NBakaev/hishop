@@ -1,4 +1,4 @@
-package ru.hishop.purchaseorder;
+package tk.hishopapp.purchaseorder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/api/v1/purchase")
 public class PurchaseOrderController {
 
+    private final PurchaseOrderRepository purchaseOrderRepository;
+
     @Autowired
-    private PurchaseOrderRepository purchaseOrderRepository;
+    public PurchaseOrderController(final PurchaseOrderRepository purchaseOrderRepository) {
+        this.purchaseOrderRepository = purchaseOrderRepository;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public

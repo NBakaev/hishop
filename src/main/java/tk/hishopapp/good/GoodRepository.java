@@ -1,4 +1,4 @@
-package ru.hishop.good;
+package tk.hishopapp.good;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,8 +15,12 @@ import java.util.List;
 @Service
 public class GoodRepository {
 
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
-    private MongoTemplate mongoTemplate;
+    public GoodRepository(final MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     public Good createNewGood(Good good) {
         mongoTemplate.insert(good);
@@ -36,13 +40,13 @@ public class GoodRepository {
         return good;
     }
 
-    public void deleteGoodById (String id){
+    public void deleteGoodById(String id) {
         Good good = new Good();
         good.setId(id);
         mongoTemplate.remove(good);
     }
 
-    public List<Good> getAllGoodsOnIndexPage(){
+    public List<Good> getAllGoodsOnIndexPage() {
 
         Criteria criteria = new Criteria();
         criteria.and("showOnIndexPage").is(true);
@@ -50,6 +54,5 @@ public class GoodRepository {
 
         return mongoTemplate.find(query, Good.class);
     }
-
 
 }

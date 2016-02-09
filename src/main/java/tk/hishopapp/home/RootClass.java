@@ -1,5 +1,6 @@
-package ru.hishop.home;
+package tk.hishopapp.home;
 
+import io.swagger.annotations.ApiModel;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -10,12 +11,13 @@ import java.util.Date;
  * All Rights Reserved
  */
 
+@ApiModel("This is just test/demo class for health-checking web-server")
 public class RootClass {
 
     @Id
     private String id = new ObjectId().toString();
 
-    private String name = "UNRESOLVED_ADDRESS";
+    private String serverRequestName = "UNRESOLVED_ADDRESS";
     private Date date = new Date();
 
 
@@ -35,11 +37,11 @@ public class RootClass {
         this.date = date;
     }
 
-    public String getName() {
-        return name;
+    public String getServerRequestName() {
+        return serverRequestName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setServerRequestName(String serverRequestName) {
+        this.serverRequestName = serverRequestName;
     }
 }

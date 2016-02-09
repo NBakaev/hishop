@@ -1,4 +1,7 @@
-package ru.hishop.entity;
+package tk.hishopapp.entity;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
@@ -7,11 +10,26 @@ import java.util.Date;
  * All Rights Reserved
  */
 
+@ApiModel("Created date and user Id of object")
 public class CreatedInfo {
 
+    @ApiModelProperty("Created object date")
     private Date createdDate = new Date();
+
+    @ApiModelProperty("Created user Id of this object")
     private String createdById = null;
 
+    public CreatedInfo(Date createdDate, String createdById) {
+        this.createdDate = createdDate;
+        this.createdById = createdById;
+    }
+
+    public CreatedInfo(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public CreatedInfo() {
+    }
 
     public Date getCreatedDate() {
         return createdDate;

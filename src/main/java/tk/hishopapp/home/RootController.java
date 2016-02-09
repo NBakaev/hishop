@@ -1,4 +1,4 @@
-package ru.hishop.home;
+package tk.hishopapp.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +25,7 @@ public class RootController {
     @ResponseBody
     RootClass index(HttpServletRequest request) {
         RootClass myCustomClass = new RootClass();
-        myCustomClass.setName(request.getServerName());
+        myCustomClass.setServerRequestName(request.getServerName());
         return myCustomClass;
     }
 

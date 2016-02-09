@@ -1,9 +1,10 @@
-package ru.hishop.purchaseorder;
+package tk.hishopapp.purchaseorder;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.hishop.entity.BasicClassAbstract;
-import ru.hishop.good.Good;
+import tk.hishopapp.entity.BasicClassAbstract;
+import tk.hishopapp.good.Good;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,7 @@ public class PurchaseOrder extends BasicClassAbstract {
     @ApiModelProperty("Price of good as double")
     private double price;
 
-    /**
-     * Does this order is full paid
-     */
-    @ApiModelProperty("Is it paid")
+    @ApiModelProperty("Does this order is full paid")
     private boolean paid = false;
 
     @ApiModelProperty("Is it refunded")

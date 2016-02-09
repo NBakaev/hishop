@@ -1,5 +1,6 @@
-package ru.hishop.good;
+package tk.hishopapp.good;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +14,20 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/api/v1/good")
+@Api("Goods")
 public class GoodController {
 
+    private final GoodRepository goodRepository;
+
     @Autowired
-    private GoodRepository goodRepository;
+    public GoodController(final GoodRepository goodRepository) {
+        this.goodRepository = goodRepository;
+    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public
     @ResponseBody
-    Good addNewGood(@RequestBody Good good, HttpServletRequest request) {
+    Good addGood(@RequestBody Good good, HttpServletRequest request) {
         goodRepository.createNewGood(good);
         return good;
     }
