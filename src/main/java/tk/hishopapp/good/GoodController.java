@@ -28,7 +28,7 @@ public class GoodController {
     public
     @ResponseBody
     Good addGood(@RequestBody Good good, HttpServletRequest request) {
-        goodRepository.createNewGood(good);
+        goodRepository.createGood(good);
         return good;
     }
 
