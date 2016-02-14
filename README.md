@@ -1,8 +1,21 @@
 # hiShop - tk.hishopapp
 
 This project uses Java & Spring Boot.
-To start server use `mvn package & java -jar target/web-0.0.1-SNAPSHOT.jar`. 
+To start server use `mvn package & java -jar target/web-0.1.0-SNAPSHOT.jar`. 
 This will start web server on port which is described in `application.properties` or environment or VM options on startup
+
+## Start options
+
+#### Program arguments
+
+ - `--spring.profiles.active=development` - start with embedded(running on local machine; fully clean on every startup) MongoDB database
+ - `--spring.profiles.active=production` - by default or leave `spring.profiles.active` blank - start with remote MongoDB database
+ - `-Dhttp.proxyHost=127.0.0.1
+ -Dhttp.proxyPort=9999
+ -Dhttps.proxyHost=127.0.0.1
+ -Dhttps.proxyPort=9999
+ -Djava.net.useSystemProxies=true
+` - just common argument to use local proxy for JVM (port 9999)
 
 ## Components:
 
@@ -12,14 +25,14 @@ This will start web server on port which is described in `application.properties
  - MongoDB 3 (NoSQL database)
 
 ### Frontend:
- - AngularJS
- - All AngularJS (`src/main/resources/static`)
+ - AngularJS - (`src/main/resources/static`)
 
 #### Additional Files:
  - `Procfile` - Heroku (PaaS) configuration 
- - `docker-compose.yml` - docker compose (docker orchestration)
+ - `docker/docker-compose.yml` - docker compose (docker orchestration)
+ - `docker` folder - images for Docker
 
-### Notes:
+## Notes:
 
  - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
 
