@@ -1,5 +1,4 @@
 # hiShop - tk.hishopapp
-==========
 
 [![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   
    
