@@ -24,22 +24,14 @@ import java.io.IOException;
 @Configuration
 public class MongoConfigurationTest {
 
-//    @Value("${mongodb.port}")
-    private String developmentMongoDbPort = new Integer(27017).toString();
-
-//    @Value("${mongodb.database}")
     private String database = "main";
 
-
-    //    @Bean(destroyMethod = "close")
     @Bean
     @Profile({"development"})
     public MongoOperations mongoEmbedded() throws IOException {
 
-        int port = Integer.parseInt(developmentMongoDbPort);
+        int port = 27017;
         Command command = Command.MongoD;
-
-//        MongodStarter starter = MongodStarter.getDefaultInstance();
 
         IRuntimeConfig runtimeConfig = new RuntimeConfigBuilder()
                 .defaults(command)
@@ -55,13 +47,11 @@ public class MongoConfigurationTest {
                 .build();
 
         MongodStarter runtime = MongodStarter.getInstance(runtimeConfig);
-//        MongodStarter runtime = MongodStarter.getDefaultInstance();
-
-
         MongodExecutable mongodExecutable = null;
-        try{
+
+        try {
             mongodExecutable = runtime.prepare(mongodConfig);
-        }catch (Exception e){
+        } catch (Exception e) {
             mongodExecutable.getFile();
         }
         MongodProcess mongod = mongodExecutable.start();
