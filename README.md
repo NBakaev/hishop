@@ -37,7 +37,7 @@ This will start web server on port which is described in `application.properties
  - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
 
 ### Основные адреса
-В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` или dns алиас `http://www.hishopapp.tk` нужно использовать `http://localhost:5555/`
+В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` или dns алиас `http://www.hishopapp.tk`(не работает) нужно использовать `http://localhost:5555/`
 
  - `http://hishop.herokuapp.com` - test appication here (index)
  - `http://hishop.herokuapp.com/api/v1/` - REST API Root
