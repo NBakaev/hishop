@@ -36,6 +36,35 @@ public class Good extends BasicClassAbstract {
     private boolean showOnIndexPage = false;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Good good = (Good) o;
+
+        if (Double.compare(good.price, price) != 0) return false;
+        if (numberAvailable != good.numberAvailable) return false;
+        if (numberSold != good.numberSold) return false;
+        if (showOnIndexPage != good.showOnIndexPage) return false;
+        if (description != null ? !description.equals(good.description) : good.description != null) return false;
+        return categoriesIds != null ? categoriesIds.equals(good.categoriesIds) : good.categoriesIds == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(price);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + numberAvailable;
+        result = 31 * result + numberSold;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (categoriesIds != null ? categoriesIds.hashCode() : 0);
+        result = 31 * result + (showOnIndexPage ? 1 : 0);
+        return result;
+    }
 
     public int getNumberAvailable() {
         return numberAvailable;
