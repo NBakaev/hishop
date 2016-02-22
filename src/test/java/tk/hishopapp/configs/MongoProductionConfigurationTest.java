@@ -17,7 +17,7 @@ import tk.hishopapp.StartApplication;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = StartApplication.class)
 @WebAppConfiguration
-@ActiveProfiles("default")
+@ActiveProfiles({"default", "production"})
 public class MongoProductionConfigurationTest {
 
     @Autowired
