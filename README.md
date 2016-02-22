@@ -1,7 +1,8 @@
 # hiShop - tk.hishopapp
 
 [![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   
-   
+[![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)
+  
 This project uses Java & Spring Boot.
 To start server use `mvn package & java -jar target/web-0.1.0-SNAPSHOT.jar`. 
 This will start web server on port which is described in `application.properties` or environment or VM options on startup
