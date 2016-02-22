@@ -46,4 +46,7 @@ public interface GoodRepository {
      * @return
      */
     List<Good> getAllGoodsOnIndexPage();
+
+    Good getGoodById (String id);
+
 }

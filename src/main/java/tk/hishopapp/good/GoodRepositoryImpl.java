@@ -60,4 +60,10 @@ public class GoodRepositoryImpl implements GoodRepository {
         return mongoTemplate.find(query, Good.class);
     }
 
+    @Override
+    public Good getGoodById(String id) {
+        Criteria criteria = new Criteria().and("id").is(id);
+        Query query = new Query(criteria);
+        return mongoTemplate.findOne(query, Good.class);
+    }
 }
