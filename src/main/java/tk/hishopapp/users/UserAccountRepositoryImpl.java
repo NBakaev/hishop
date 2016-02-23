@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.hishopapp.auth.UserAccountRoles;
 import tk.hishopapp.auth.UserAccountStatus;
@@ -21,6 +22,9 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     @Autowired
     private MongoOperations mongoOperations;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @Override
     public UserAccount findByUsername(String user) {
@@ -35,6 +39,7 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
 
         userAccount.setEnabled(true);
         userAccount.setStatus(UserAccountStatus.STATUS_APPROVED.name());
+        userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
 
         // manually set basic roles to prevent user to override it
         // and get ROLE_ADMIN
