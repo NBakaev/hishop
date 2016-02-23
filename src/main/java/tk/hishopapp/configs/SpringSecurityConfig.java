@@ -1,6 +1,7 @@
 package tk.hishopapp.configs;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
+@ImportResource({"classpath:webSecurityConfig.xml"})
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //    @Autowired
