@@ -19,6 +19,11 @@ public class CurrentUserImpl implements CurrentUser {
     @Override
     public UserAccount getCurrentUser() {
         Authentication a = SecurityContextHolder.getContext().getAuthentication();
+
+        // check is user authenticated
+        if (a.getPrincipal().equals("anonymousUser")) {
+            return null;
+        }
         User currentUser = (User) a.getPrincipal();
         return userAccountRepository.findByUsername(currentUser.getUsername());
     }

@@ -36,6 +36,8 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
         userAccount.setEnabled(true);
         userAccount.setStatus(UserAccountStatus.STATUS_APPROVED.name());
 
+        // manually set basic roles to prevent user to override it
+        // and get ROLE_ADMIN
         List<String> roles = new ArrayList<>();
         roles.add(UserAccountRoles.ROLE_USER);
 
@@ -54,6 +56,11 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     @Override
     public void updateUserAccount(UserAccount userAccount) {
         mongoOperations.save(userAccount);
+    }
+
+    @Override
+    public List<UserAccount> getAllUserAccount() {
+        return mongoOperations.findAll(UserAccount.class);
     }
 
 }

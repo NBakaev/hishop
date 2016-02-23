@@ -5,5 +5,12 @@ package tk.hishopapp.users;
  * All Rights Reserved
  */
 public interface CurrentUser {
+
+    /**
+     * Get current user that is auth with current HTTP request
+     * If current user is anonymous - without credentials - return null
+     *
+     * @return
+     */
     UserAccount getCurrentUser();
 }
