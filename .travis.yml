@@ -9,5 +9,5 @@ after_success:
 notifications:
   email: false
   slack: nbakaev:ogljTlQvuQMCZ5Ti9UdRi7iU
-    on_success: always
-    on_failure: always
+#    on_success: always
+#    on_failure: always
