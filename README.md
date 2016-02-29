@@ -27,6 +27,15 @@ This will start web server on port which is described in `application.properties
  - Spring 4 & Spring Boot 1.3
  - MongoDB 3 (NoSQL database)
 
+#### Authentication & authorization
+ Some REST endpoints requires `ROLE_ADMIN`. Users roles are in `userAccounts.role` filed in collection in db. Default user with admin username `ya@nbakaev.ru`. Password: `admin`. For example `GET /api/v1/users` which will response all users requres admin role. 
+
+Password are stored as hash with `bcrypt` (better than md5/sha512)
+
+Roles list
+ - ROLE_USER - role for every registered user
+ - ROLE_ADMIN - admin account
+
 ### Frontend:
  - AngularJS - (`src/main/resources/static`)
 
