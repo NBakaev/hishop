@@ -1,8 +1,10 @@
 package tk.hishopapp.purchaseorder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tk.hishopapp.auth.UserAccountRoles;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,10 +24,11 @@ public class PurchaseOrderController {
         this.purchaseOrderRepository = purchaseOrderRepository;
     }
 
+    @Secured({UserAccountRoles.ROLE_USER, UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "", method = RequestMethod.POST)
     public
     @ResponseBody
-    PurchaseOrder addNewGood(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request) {
+    PurchaseOrder addNewPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request) {
         purchaseOrderRepository.createNewPurchaseOrder(purchaseOrder);
         return purchaseOrder;
     }
@@ -37,16 +40,18 @@ public class PurchaseOrderController {
         return purchaseOrderRepository.getAllPurchaseOrder();
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public
     @ResponseBody
-    PurchaseOrder updateGood(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request) {
+    PurchaseOrder updatePurchaseOrder(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request) {
         purchaseOrderRepository.updatePurchaseOrder(purchaseOrder);
         return purchaseOrder;
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-    public void deleteGoodById(@PathVariable("id") String id) {
+    public void deletePurchaseById(@PathVariable("id") String id) {
         purchaseOrderRepository.deletePurchaseOrderById(id);
     }
 

@@ -7,7 +7,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import tk.hishopapp.email.EmailSenderService;
+import tk.hishopapp.entity.CreatedInfo;
+import tk.hishopapp.users.CurrentUser;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,11 +28,15 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
     private final MongoOperations mongoTemplate;
     private final RestTemplate restTemplate;
+    private final EmailSenderService emailSenderService;
+    private final CurrentUser currentUser;
 
     @Autowired
-    public PurchaseOrderRepositoryImpl(final MongoOperations mongoTemplate, final RestTemplate restTemplate) {
+    public PurchaseOrderRepositoryImpl(final MongoOperations mongoTemplate, final RestTemplate restTemplate, final EmailSenderService emailSenderService, final CurrentUser currentUser) {
         this.restTemplate = restTemplate;
         this.mongoTemplate = mongoTemplate;
+        this.emailSenderService = emailSenderService;
+        this.currentUser = currentUser;
     }
 
     // this is default google analytics url
@@ -54,10 +62,14 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
     }
 
     @Override
-    public PurchaseOrder createNewPurchaseOrder(PurchaseOrder good) {
-        mongoTemplate.insert(good);
+    public PurchaseOrder createNewPurchaseOrder(PurchaseOrder purchaseOrder) {
+
+        // this is trick which can be replaced with AOP
+        purchaseOrder.setCreatedInfo(new CreatedInfo(new Date(), currentUser.getCurrentUser().getId()));
+
+        mongoTemplate.insert(purchaseOrder);
         try {
-            sendPurchaseToGoogleAnalytics(good);
+            sendPurchaseToGoogleAnalytics(purchaseOrder);
         } catch (RestClientException e) {
             // here we have an exception that we can not convert response from
             // google analytics response because that is image/gif - zero pixel
@@ -66,7 +78,13 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
             // just ignore it
         }
 
-        return good;
+        try {
+            emailSenderService.sendOrderEmail(purchaseOrder);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return purchaseOrder;
     }
 
     @Override

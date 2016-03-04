@@ -2,8 +2,10 @@ package tk.hishopapp.good;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tk.hishopapp.auth.UserAccountRoles;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -24,6 +26,7 @@ public class GoodController {
         this.goodRepository = goodRepository;
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "", method = RequestMethod.POST)
     public
     @ResponseBody
@@ -39,6 +42,7 @@ public class GoodController {
         return goodRepository.getAllGoods();
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public
     @ResponseBody
@@ -47,6 +51,7 @@ public class GoodController {
         return good;
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteGoodById(@PathVariable("id") String id) {
         goodRepository.deleteGoodById(id);
