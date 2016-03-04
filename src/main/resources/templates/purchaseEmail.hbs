@@ -1,0 +1,16 @@
+{{user.firstname}}, вы купили следующие товары:
+
+<table>
+    <tr>
+        <td>Название</td>
+        <td>Описание</td>
+    </tr>
+
+    {{#each goods}}
+        <tr>
+            <td> {{ name }} </td>
+            <td> {{ description}} </td>
+        </tr>
+    {{/each}}
+
+</table>
