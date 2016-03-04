@@ -15,5 +15,7 @@ public interface UserAccountRepository {
 
     void updateUserAccount(UserAccount userAccount);
 
+    UserAccount findUsernameById(String id);
+
     List<UserAccount> getAllUserAccount();
 }

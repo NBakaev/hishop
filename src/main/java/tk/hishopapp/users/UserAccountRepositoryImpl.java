@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tk.hishopapp.auth.UserAccountRoles;
 import tk.hishopapp.auth.UserAccountStatus;
+import tk.hishopapp.email.EmailSenderService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @Override
     public UserAccount findByUsername(String user) {
@@ -49,6 +52,15 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
         userAccount.setRoles(roles);
 
         mongoOperations.insert(userAccount);
+
+        try {
+            emailSenderService.sendCreatingEmail(userAccount);
+        } catch (Exception e) {
+            // send email is not so important
+            // if will be some errors
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -61,6 +73,11 @@ public class UserAccountRepositoryImpl implements UserAccountRepository {
     @Override
     public void updateUserAccount(UserAccount userAccount) {
         mongoOperations.save(userAccount);
+    }
+
+    @Override
+    public UserAccount findUsernameById(String id) {
+        return mongoOperations.findOne(Query.query(Criteria.where("id").is(id)), UserAccount.class);
     }
 
     @Override
