@@ -4,10 +4,10 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)
   
 This project uses Java & Spring Boot.
-To start server use `mvn package & java -jar target/web-0.1.0-SNAPSHOT.jar`. 
-This will start web server on port which is described in `application.properties` or environment or VM options on startup
+To start server use `mvn package & java -jar target/tk.hishop.jar`. Or you can skip tests on packaging step with `mvn package -DskipTests`
 
 ## Start options
+Web server startup port is described in `application.properties` or environment or VM options on startup
 
 #### Program arguments
 
@@ -40,8 +40,10 @@ This will start web server on port which is described in `application.properties
  - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
 
 ### Основные адреса
-В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` или dns алиас `http://www.hishopapp.tk`(не работает) нужно использовать `http://localhost:5555/`
+В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` нужно использовать `http://localhost:5555/`
 
- - `http://hishop.herokuapp.com` - test appication here (index)
+ - `http://hishop.herokuapp.com` - test application UI here (index)
  - `http://hishop.herokuapp.com/api/v1/` - REST API Root
- - `http://hishop.herokuapp.com/swagger-ui.html` - all REST endpoints documentation
+ - `http://hishop.herokuapp.com/swagger-ui.html` - Swagger UI - all REST endpoints documentation
+ - `http://hishop.herokuapp.com/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
+with any tool that support swagger format, for example, with `Postman`
