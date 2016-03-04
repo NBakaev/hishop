@@ -23,6 +23,8 @@ import java.util.List;
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/23/2016.
  * All Rights Reserved
+ *
+ * Authenticate userAccount
  */
 @Configuration
 public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
@@ -37,7 +39,6 @@ public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticati
 
     @Override
     protected void additionalAuthenticationChecks(UserDetails userDetails, UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken) throws AuthenticationException {
-
     }
 
     @Override
