@@ -3,6 +3,7 @@ package tk.hishopapp.entity;
 import io.swagger.annotations.ApiModelProperty;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -22,6 +23,7 @@ public abstract class BasicClassAbstract {
     private String id = new ObjectId().toString();
 
     @ApiModelProperty("user-friendly name of document")
+    @TextIndexed
     private String name = null;
 
     private CreatedInfo createdInfo = new CreatedInfo();

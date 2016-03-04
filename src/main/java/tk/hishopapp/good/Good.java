@@ -2,6 +2,7 @@ package tk.hishopapp.good;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import tk.hishopapp.entity.BasicClassAbstract;
 
@@ -27,6 +28,7 @@ public class Good extends BasicClassAbstract {
     private int numberSold;
 
     @ApiModelProperty("Some user-defined description in html")
+    @TextIndexed
     private String description;
 
     @ApiModelProperty("Ids of categories")
