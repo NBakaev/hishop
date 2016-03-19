@@ -1,4 +1,4 @@
-# hiShop - tk.hishopapp
+# hiShop - e-commerce & shop
 
 [![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status]
 
