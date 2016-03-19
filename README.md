@@ -3,15 +3,17 @@
 [![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   
 [![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)
   
+## Build & run  
 This project uses Java & Spring Boot.
-To start server use `mvn package & java -jar target/tk.hishop.jar`. Or you can skip tests on packaging step with `mvn package -DskipTests`
+To start server use `mvn package & java -jar target/tk.hishop.jar`.
+After compiling - test will be automatically run. You can skip tests on packaging step with `mvn package -DskipTests`
 
 ## Start options
 Web server startup port is described in `application.properties` or environment or VM options on startup
 
 #### Program arguments
 
- - `--spring.profiles.active=development` - start with embedded(running on local machine; fully clean on every startup) MongoDB database
+ - `--spring.profiles.active=development` - start with embedded(running on local machine; fully clean on every startup) MongoDB database. Used primary for tests.
  - `--spring.profiles.active=production` - by default or leave `spring.profiles.active` blank - start with remote MongoDB database
  - `-Dhttp.proxyHost=127.0.0.1
  -Dhttp.proxyPort=9999
@@ -28,7 +30,9 @@ Web server startup port is described in `application.properties` or environment 
  - MongoDB 3 (NoSQL database)
 
 #### Authentication & authorization
- Some REST endpoints requires `ROLE_ADMIN`. Users roles are in `userAccounts.role` filed in collection in db. Default user with admin username `ya@nbakaev.ru`. Password: `admin`. For example `GET /api/v1/users` which will response all users requres admin role. 
+ Some REST endpoints requires `ROLE_ADMIN`. Users roles are in `userAccounts.role` filed in collection in db.
+  
+Default user with admin username `ya@nbakaev.ru`. Password: `admin`. To test, for example `GET /api/v1/users` which will response all users requres admin role. 
 
 Password are stored as hash with `bcrypt` (better than md5/sha512)
 
