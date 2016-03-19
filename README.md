@@ -1,7 +1,14 @@
 # hiShop - tk.hishopapp
 
-[![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   
-[![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)
+[![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status]
+
+[Travis]: https://travis-ci.org/NBakaev/hishop
+[Travis Widget]: https://travis-ci.org/NBakaev/hishop.svg?branch=master
+[Coverage Status]: https://codecov.io/github/NBakaev/hishop?branch=master
+[Coverage Status Widget]: https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg
+
+<!--[![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   -->
+<!--[![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)-->
   
 ## Build & run  
 This project uses Java & Spring Boot.
