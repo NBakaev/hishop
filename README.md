@@ -7,9 +7,6 @@
 [Coverage Status]: https://codecov.io/github/NBakaev/hishop?branch=master
 [Coverage Status Widget]: https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg
 
-<!--[![Build Status](https://travis-ci.org/NBakaev/hishop.png?branch=master)](https://travis-ci.org/NBakaev/hishop)   -->
-<!--[![Coverage Status](https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg)](https://codecov.io/github/NBakaev/hishop?branch=master)-->
-  
 ## Build & run  
 This project uses Java & Spring Boot.
 To start server use `mvn package & java -jar target/tk.hishop.jar`.
