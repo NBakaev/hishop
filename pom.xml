@@ -24,6 +24,7 @@
 		<httpclient.version>4.3.5</httpclient.version>
 		<mongo.java.driver.version>3.2.0</mongo.java.driver.version>
 		<handlebars-version>4.0.4</handlebars-version>
+		<org.apache.poi>3.12</org.apache.poi>
 	</properties>
 
 	<dependencies>
@@ -141,6 +142,18 @@
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars</artifactId>
 			<version>${handlebars-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${org.apache.poi}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.12</version>
 		</dependency>
 
 	</dependencies>
