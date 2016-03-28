@@ -1,5 +1,8 @@
 package tk.hishopapp.good;
 
+import tk.hishopapp.dto.GoodEntityDto;
+import tk.hishopapp.dto.result.GoodDtoResult;
+
 import java.util.List;
 
 /**
@@ -47,6 +50,20 @@ public interface GoodRepository {
      */
     List<Good> getAllGoodsOnIndexPage();
 
+    /**
+     * Get good by id
+     *
+     * @param id
+     * @return
+     */
     Good getGoodById (String id);
+
+    /**
+     * Get goods by dto criteria
+     *
+     * @param goodEntityDto
+     * @return
+     */
+    GoodDtoResult getGoodsByDto(GoodEntityDto goodEntityDto);
 
 }
