@@ -1,4 +1,4 @@
-# hiShop - e-commerce & shop
+# hiShop - e-commerce
 
 [![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status]
 
@@ -44,7 +44,7 @@ Default user with admin username `ya@nbakaev.ru`. Password: `admin`. To test, fo
 Password are stored as hash with `bcrypt` (better than md5/sha512)
 
 Roles list
- - ROLE_USER - role for every registered user
+ - ROLE_USER - default role for every registered user
  - ROLE_ADMIN - admin account
 
 ### Frontend:
@@ -54,6 +54,7 @@ Roles list
  - `Procfile` - Heroku (PaaS) configuration 
  - `docker/docker-compose.yml` - docker compose (docker orchestration)
  - `docker` folder - images for Docker
+ - `.travis.yml` CI server settings for notifications via Slack and test coverage reports
 
 ## Notes:
 
