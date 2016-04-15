@@ -11,11 +11,8 @@
 
     <http use-expressions="true" auto-config="false"
           create-session="stateless">
-        <!--<intercept-url pattern="/**" access="permitAll" method="OPTIONS"/>-->
-        <!--<intercept-url pattern="/health" access="permitAll" method="GET"/>-->
-        <!--<intercept-url pattern="/" access="permitAll" method="GET"/>-->
-        <!--<intercept-url pattern="/api-docs/**" access="permitAll" method="GET"/>-->
-        <!--<intercept-url pattern="/**" access="isAuthenticated()"/>-->
+        <intercept-url pattern="/**" access="permitAll" method="OPTIONS"/>
+        <intercept-url pattern="/health" access="hasRole('ROLE_ADMIN')" method="GET"/>
         <csrf disabled="true"/>
         <http-basic/>
     </http>

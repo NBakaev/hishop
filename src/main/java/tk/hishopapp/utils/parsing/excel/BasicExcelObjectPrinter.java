@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import tk.hishopapp.dto.BasicEntityDTO;
+import tk.hishopapp.entity.filters.requestdto.GoodFilterRequestDto;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +48,7 @@ public class BasicExcelObjectPrinter {
         return sheetData;
     }
 
-    public <T extends BasicEntityDTO> XSSFSheet createMetaSheet(T t, Long requestSize, Date date) {
+    public <T extends GoodFilterRequestDto> XSSFSheet createMetaSheet(T t, Long requestSize, Date date) {
 
         SheetData sheetDate = createSheet("Meta info");
         XSSFSheet sheet = sheetDate.getSheet();

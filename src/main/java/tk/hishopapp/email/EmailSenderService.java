@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Compile and sent emails
+ * from handlebars templates
  * Created by Nikita Bakaev, ya@nbakaev.ru on 3/4/2016.
  * All Rights Reserved
  */

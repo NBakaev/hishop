@@ -68,3 +68,12 @@ Roles list
  - `http://hishop.herokuapp.com/swagger-ui.html` - Swagger UI - all REST endpoints documentation
  - `http://hishop.herokuapp.com/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
 with any tool that support swagger format, for example, with `Postman`
+
+## Code snippets
+
+### Drop all mongodb indexes in shell
+```js
+db.getCollectionNames().forEach(function(collName) {
+  db.runCommand({dropIndexes: collName, index: "*"});
+});
+```

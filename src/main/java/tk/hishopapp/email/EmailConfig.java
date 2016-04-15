@@ -8,10 +8,11 @@ import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 
 /**
+ * This is email sender
+ * via http rest {@code https://mailgun.com}
+ *
  * Created by Nikita Bakaev, ya@nbakaev.ru on 3/4/2016.
  * All Rights Reserved
- * <p>
- * This is email sender via http rest {@see https://mailgun.com}
  */
 @Configuration
 public class EmailConfig {
