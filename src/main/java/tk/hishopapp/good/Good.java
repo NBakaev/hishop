@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import tk.hishopapp.entity.BasicClassAbstract;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,11 @@ import java.util.List;
 @ApiModel("Good")
 public class Good extends BasicClassAbstract {
 
-    @ApiModelProperty("Price of good as double")
-    private double price;
+    @ApiModelProperty("Price of good as BigDecimal")
+    private BigDecimal price;
+
+    @ApiModelProperty("Price of good that we bought. Used to calculate marginality BigDecimal")
+    private BigDecimal purchasePrice;
 
     @ApiModelProperty("Number that can be bought")
     private int numberAvailable;
@@ -37,6 +41,8 @@ public class Good extends BasicClassAbstract {
     @ApiModelProperty("true to show on / page")
     private boolean showOnIndexPage = false;
 
+    @ApiModelProperty("Supplier id")
+    private String companySupplierId;
 
     @Override
     public boolean equals(Object o) {
@@ -45,27 +51,46 @@ public class Good extends BasicClassAbstract {
 
         Good good = (Good) o;
 
-        if (Double.compare(good.price, price) != 0) return false;
         if (numberAvailable != good.numberAvailable) return false;
         if (numberSold != good.numberSold) return false;
         if (showOnIndexPage != good.showOnIndexPage) return false;
+        if (price != null ? !price.equals(good.price) : good.price != null) return false;
+        if (purchasePrice != null ? !purchasePrice.equals(good.purchasePrice) : good.purchasePrice != null)
+            return false;
         if (description != null ? !description.equals(good.description) : good.description != null) return false;
-        return categoriesIds != null ? categoriesIds.equals(good.categoriesIds) : good.categoriesIds == null;
+        if (categoriesIds != null ? !categoriesIds.equals(good.categoriesIds) : good.categoriesIds != null)
+            return false;
+        return companySupplierId != null ? companySupplierId.equals(good.companySupplierId) : good.companySupplierId == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(price);
-        result = (int) (temp ^ (temp >>> 32));
+        int result = price != null ? price.hashCode() : 0;
+        result = 31 * result + (purchasePrice != null ? purchasePrice.hashCode() : 0);
         result = 31 * result + numberAvailable;
         result = 31 * result + numberSold;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (categoriesIds != null ? categoriesIds.hashCode() : 0);
         result = 31 * result + (showOnIndexPage ? 1 : 0);
+        result = 31 * result + (companySupplierId != null ? companySupplierId.hashCode() : 0);
         return result;
+    }
+
+    public String getCompanySupplierId() {
+        return companySupplierId;
+    }
+
+    public void setCompanySupplierId(String companySupplierId) {
+        this.companySupplierId = companySupplierId;
+    }
+
+    public BigDecimal getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(BigDecimal purchasePrice) {
+        this.purchasePrice = purchasePrice;
     }
 
     public int getNumberAvailable() {
@@ -108,11 +133,11 @@ public class Good extends BasicClassAbstract {
         this.showOnIndexPage = showOnIndexPage;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
