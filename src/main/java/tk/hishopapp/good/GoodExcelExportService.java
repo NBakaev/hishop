@@ -3,8 +3,8 @@ package tk.hishopapp.good;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.hishopapp.dto.GoodEntityDto;
-import tk.hishopapp.dto.result.GoodDtoResult;
+import tk.hishopapp.entity.filters.responsedto.GoodResultResponseDto;
+import tk.hishopapp.entity.filters.requestdto.GoodFilterRequestDto;
 import tk.hishopapp.utils.parsing.excel.BasicExcelObjectPrinter;
 import tk.hishopapp.utils.parsing.excel.ExcelCommonService;
 import tk.hishopapp.utils.parsing.excel.SheetData;
@@ -27,9 +27,9 @@ public class GoodExcelExportService {
     private GoodRepository goodRepository;
 
 
-    public byte[] getGoodsExcel(GoodEntityDto goodEntityDto) {
+    public byte[] getGoodsExcel(GoodFilterRequestDto goodEntityDto) {
 
-        GoodDtoResult goodDtoResult = goodRepository.getGoodsByDto(goodEntityDto);
+        GoodResultResponseDto goodDtoResult = goodRepository.getGoodsByDto(goodEntityDto);
 
         BasicExcelObjectPrinter basicExcelObjectPrinter = new BasicExcelObjectPrinter("Goods", excelCommonService);
         basicExcelObjectPrinter.createMetaSheet(goodEntityDto, goodDtoResult.getRelevantObjectsNumber(), new Date());

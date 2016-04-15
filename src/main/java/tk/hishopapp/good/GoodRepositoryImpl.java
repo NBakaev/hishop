@@ -5,8 +5,9 @@ import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import tk.hishopapp.dto.GoodEntityDto;
-import tk.hishopapp.dto.result.GoodDtoResult;
+import tk.hishopapp.entity.filters.responsedto.GoodResultResponseDto;
+import tk.hishopapp.entity.filters.EntityFilterService;
+import tk.hishopapp.entity.filters.requestdto.GoodFilterRequestDto;
 
 import java.util.List;
 
@@ -18,10 +19,12 @@ import java.util.List;
 public class GoodRepositoryImpl implements GoodRepository {
 
     private final MongoOperations mongoTemplate;
+    private final EntityFilterService entityFilterService;
 
     @Autowired
-    public GoodRepositoryImpl(final MongoOperations mongoTemplate) {
+    public GoodRepositoryImpl(final MongoOperations mongoTemplate, final EntityFilterService entityFilterService) {
         this.mongoTemplate = mongoTemplate;
+        this.entityFilterService = entityFilterService;
     }
 
     @Override
@@ -70,26 +73,27 @@ public class GoodRepositoryImpl implements GoodRepository {
     }
 
     @Override
-    public GoodDtoResult getGoodsByDto(GoodEntityDto goodEntityDto) {
-        Criteria criteria = new Criteria();
+    public GoodResultResponseDto getGoodsByDto(GoodFilterRequestDto goodEntityDto) {
 
-        if (goodEntityDto.createdDateFrom != null && goodEntityDto.getCreatedDateTo() == null) {
-            criteria.and("createdInfo.createdDate").gte(goodEntityDto.createdDateFrom);
-        } else if (goodEntityDto.createdDateFrom != null && goodEntityDto.getCreatedDateTo() != null) {
-            criteria.and("createdInfo.createdDate").gte(goodEntityDto.createdDateFrom).lte(goodEntityDto.createdDateTo);
-        } else if (goodEntityDto.createdDateFrom == null && goodEntityDto.getCreatedDateTo() != null) {
-            criteria.and("createdInfo.createdDate").lte(goodEntityDto.createdDateTo);
+        Criteria criteria = entityFilterService.getCriteriaFromAbstractFilter(goodEntityDto);
+        Query query = entityFilterService.getQueryFromAbstractFilter(goodEntityDto, criteria);
+
+        GoodResultResponseDto result = new GoodResultResponseDto();
+
+        result.setRelevantObjectsNumber(entityFilterService.countResultFromCriteria(goodEntityDto, criteria, Good.class, mongoTemplate));
+
+        // if we want just count - return
+        // or we have not objects - just optimisation
+        if (goodEntityDto.isOnlyCount() || result.getRelevantObjectsNumber() == 0) {
+            return result;
         }
-
-        Query query = new Query(criteria);
-        GoodDtoResult result = new GoodDtoResult();
 
         List<Good> goods = mongoTemplate.find(query, Good.class);
 
         result.setResultedObjects(goods);
-        result.setRelevantObjectsNumber(goods.size());
         result.setReturnedObjectsNumber(goods.size());
 
         return result;
     }
+
 }

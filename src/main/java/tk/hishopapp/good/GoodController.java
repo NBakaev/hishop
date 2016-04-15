@@ -11,7 +11,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tk.hishopapp.auth.UserAccountRoles;
-import tk.hishopapp.dto.GoodEntityDto;
+import tk.hishopapp.entity.filters.responsedto.GoodResultResponseDto;
+import tk.hishopapp.entity.filters.requestdto.GoodFilterRequestDto;
 import tk.hishopapp.utils.parsing.excel.BasicExcelObjectPrinter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,12 +76,20 @@ public class GoodController {
         return goodRepository.getAllGoodsOnIndexPage();
     }
 
-    // TODO:   @Secured({UserAccountRoles.ROLE_ADMIN})
-    @ApiOperation(value = "get goods in excel by criteria (builder)")
+    @ApiOperation(value = "get goods by filter, including full-text search, price criteria and a lot of other")
+    @RequestMapping(value = "filter", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    GoodResultResponseDto getGoodsByFilter(@RequestBody GoodFilterRequestDto goodEntityDto, HttpServletResponse response, HttpServletRequest request) {
+        return goodRepository.getGoodsByDto(goodEntityDto);
+    }
+
+    //@Secured({UserAccountRoles.ROLE_ADMIN})
+    @ApiOperation(value = "get goods in excel by filter")
     @RequestMapping(value = "excel/download", method = RequestMethod.POST)
     public
     @ResponseBody
-    ResponseEntity<byte[]> getGoodsInExcel(@RequestBody GoodEntityDto goodEntityDto, HttpServletResponse response, HttpServletRequest request) {
+    ResponseEntity<byte[]> getGoodsInExcel(@RequestBody GoodFilterRequestDto goodEntityDto, HttpServletResponse response, HttpServletRequest request) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(BasicExcelObjectPrinter.EXCEL_MIME_TYPE));
@@ -89,13 +98,13 @@ public class GoodController {
         return responseEntity;
     }
 
-    // TODO:   @Secured({UserAccountRoles.ROLE_ADMIN})
+    //@Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "excel/download.xlsx", method = RequestMethod.GET)
     public
     @ResponseBody
     ResponseEntity<byte[]> getAllGoodsInExcel() {
 
-        GoodEntityDto goodEntityDto = new GoodEntityDto();
+        GoodFilterRequestDto goodEntityDto = new GoodFilterRequestDto();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(BasicExcelObjectPrinter.EXCEL_MIME_TYPE));
