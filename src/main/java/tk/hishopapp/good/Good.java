@@ -44,6 +44,12 @@ public class Good extends BasicClassAbstract {
     @ApiModelProperty("Supplier id")
     private String companySupplierId;
 
+    @ApiModelProperty("")
+    private String mainAvatarUrl;
+
+    private List<String> avatarUrl;
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,7 +66,11 @@ public class Good extends BasicClassAbstract {
         if (description != null ? !description.equals(good.description) : good.description != null) return false;
         if (categoriesIds != null ? !categoriesIds.equals(good.categoriesIds) : good.categoriesIds != null)
             return false;
-        return companySupplierId != null ? companySupplierId.equals(good.companySupplierId) : good.companySupplierId == null;
+        if (companySupplierId != null ? !companySupplierId.equals(good.companySupplierId) : good.companySupplierId != null)
+            return false;
+        if (mainAvatarUrl != null ? !mainAvatarUrl.equals(good.mainAvatarUrl) : good.mainAvatarUrl != null)
+            return false;
+        return avatarUrl != null ? avatarUrl.equals(good.avatarUrl) : good.avatarUrl == null;
 
     }
 
@@ -74,7 +84,25 @@ public class Good extends BasicClassAbstract {
         result = 31 * result + (categoriesIds != null ? categoriesIds.hashCode() : 0);
         result = 31 * result + (showOnIndexPage ? 1 : 0);
         result = 31 * result + (companySupplierId != null ? companySupplierId.hashCode() : 0);
+        result = 31 * result + (mainAvatarUrl != null ? mainAvatarUrl.hashCode() : 0);
+        result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         return result;
+    }
+
+    public List<String> getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(List<String> avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getMainAvatarUrl() {
+        return mainAvatarUrl;
+    }
+
+    public void setMainAvatarUrl(String mainAvatarUrl) {
+        this.mainAvatarUrl = mainAvatarUrl;
     }
 
     public String getCompanySupplierId() {
