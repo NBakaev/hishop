@@ -10,7 +10,7 @@ notifications:
   slack: nbakaev:ogljTlQvuQMCZ5Ti9UdRi7iU
 deploy:
   provider: bintray
-  file: "./.bintray"
-  user: ya@nbakaev.ru
+  file: ".bintray"
+  user: nbakaev
   key:
     secure: hdhebXKoMlze7+G7J1LapCsnyGCj3H3PoW0HCmVHYhV63/61DwEDFw+FTXgeiRCub9JAo5aANxGl3xCHBUOh6W7zapMm1eI9WYzP0qem3F7CE6z7qeEMJSpu4tUhiEgmET5U+ll0HSVwvWA2qpCUwIvlaUIDQW3tLn7V2X2tI2iPCoHuquG6IdLe8ZqpD0v+PFE3WgauJUaDO1hwCB1bPCcimfPchi7EzqZB5rmfNwQa2GfzhNv+lRUHHuKKVRZJQM+iQOSqk1uIGQLILIk0rM7WiZOvOHPCF56+M8x4dKJ56yhwYnYPYSVgUaQeLe90ORPjsbewkTMkQY4v0fBoatCMhPX8n27r7B+IhvqvTGui3l1GzIoLdxzxdAZJFVqgNrwF3CK/2s+y+GLddlqWiO/ZAjAhZtGCi7Gqct0r2BLniefyYsvcHnTAZ14zVQmAkTi3pupgFkaZAHp4xu4tKXvsLxBMNGTpqpWjguXzpq6Smx2lLmBtX3wpksiDtovz0L1ijSI9VK7s6pFGCMmR7iIxieK8HodGdgMMZLDvPe9SeY1SA64lmRWIYTEpy5AM6K3LonC4wodQbd8Eti9AD3fSmzzTga/GI4UplW0WoeCO0P16nbONzfHjLrKlui61glZhXbPnT8M/KNkhCChp2zfWN3SEFaZ541NXHpvZR5c=
