@@ -1,8 +1,8 @@
 {
   "package": {
-    "name": "auto-upload",
-    "repo": "nbakaev/generic/hishop",
-    "subject": "travic-ci-upload"
+    "name": "hishop",
+    "repo": "generic",
+    "subject": "nbakaev"
   },
 
   "files":

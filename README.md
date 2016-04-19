@@ -73,6 +73,11 @@ Roles list
  - `http://hishop.herokuapp.com/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
 with any tool that support swagger format, for example, with `Postman`
 
+### Deployments from travis details
+ -  
+ -  
+ -  
+ 
 ## Code snippets
 
 ### Drop all mongodb indexes in shell
