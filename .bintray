@@ -11,7 +11,7 @@
 
   "files":
   [
-    {"includePattern": "target/tk.hishop.jar", "uploadPattern": "",
+    {"includePattern": "target/tk.hishop.jar", "uploadPattern": "$1",
       "matrixParams": {
         "override": 1 }
     }
