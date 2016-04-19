@@ -86,3 +86,7 @@ db.getCollectionNames().forEach(function(collName) {
   db.runCommand({dropIndexes: collName, index: "*"});
 });
 ```
+
+```bash
+git update-index --chmod=+x publish.sh
+```
