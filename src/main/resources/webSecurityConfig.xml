@@ -24,7 +24,7 @@
     </authentication-manager>
 
 
-    <beans:bean id="LocalAuthenticationProvider" class="ru.nbakaev.hishopapp.auth.LocalAuthenticationProvider"/>
+    <beans:bean id="LocalAuthenticationProvider" class="ru.nbakaev.hishop.auth.LocalAuthenticationProvider"/>
 
     <!-- Enable the annotations for defining the secure role -->
     <global-method-security secured-annotations="enabled"/>
