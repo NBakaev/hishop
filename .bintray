@@ -11,7 +11,7 @@
 
   "files":
   [
-    {"includePattern": "target/ru.nbakaev.hishop.jar", "uploadPattern": "ru.nbakaev.hishop",
+    {"includePattern": "target/ru.nbakaev.hishop.jar", "uploadPattern": "ru.nbakaev.hishop.jar",
       "matrixParams": {
         "override": 1 }
     }
