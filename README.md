@@ -73,6 +73,12 @@ Roles list
  - `http://hishop.herokuapp.com/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
 with any tool that support swagger format, for example, with `Postman`
 
+### Continuous Integration
+For CI travis-ci.com for OSS is used.
+
+Note: every build with unique maven version is deployed to `https://bintray.com/nbakaev/maven/hishop/view`. 
+If you will not change version in `pom.xml`- build will be success but artifact will not be deployed to binary repository.
+
 ### Deployments from travis details
  -  https://docs.travis-ci.com/user/deployment/bintray
  -  https://docs.travis-ci.com/user/encryption-keys/
@@ -90,3 +96,5 @@ db.getCollectionNames().forEach(function(collName) {
 ```bash
 git update-index --chmod=+x publish.sh
 ```
+### License
+Copyright © 2016 Nikita Bakaev. Licensed under the Apache License.
