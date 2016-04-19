@@ -19,14 +19,12 @@
 
     <context:annotation-config/>
 
-    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
     <authentication-manager alias="authenticationManager">
         <authentication-provider ref="LocalAuthenticationProvider"/>
     </authentication-manager>
 
 
-    <beans:bean id="LocalAuthenticationProvider" class="tk.hishopapp.auth.LocalAuthenticationProvider"/>
+    <beans:bean id="LocalAuthenticationProvider" class="ru.nbakaev.hishopapp.auth.LocalAuthenticationProvider"/>
 
     <!-- Enable the annotations for defining the secure role -->
     <global-method-security secured-annotations="enabled"/>

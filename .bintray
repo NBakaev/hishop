@@ -1,0 +1,13 @@
+{
+  "package": {
+    "name": "auto-upload",
+    "repo": "nbakaev/generic/hishop",
+    "subject": "travic-ci-upload"
+  },
+
+  "files":
+  [
+    {"includePattern": "target/tk.hishop.jar", "uploadPattern": "/"}
+  ],
+  "publish": true
+}

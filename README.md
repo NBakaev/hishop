@@ -20,14 +20,17 @@ Web server startup port is described in `application.properties` or environment 
 
 #### Program arguments
 
- - `--spring.profiles.active=development` - start with embedded(running on local machine; fully clean on every startup) MongoDB database. Used primary for tests.
- - `--spring.profiles.active=production` - by default or leave `spring.profiles.active` blank - start with remote MongoDB database
+ - `--spring.output.ansi.enabled=ALWAYS` to enable color logging
  - `-Dhttp.proxyHost=127.0.0.1
  -Dhttp.proxyPort=9999
  -Dhttps.proxyHost=127.0.0.1
  -Dhttps.proxyPort=9999
  -Djava.net.useSystemProxies=true
 ` - just common argument to use local proxy for JVM (port 9999)
+
+##### Profiles
+ - `--spring.profiles.active=production` - by default; start with remote MongoDB database
+ - `--spring.profiles.active=development` - start with embedded(running on local machine; fully clean on every startup) MongoDB database. Used primary for tests.
 
 ## Components:
 
@@ -53,8 +56,9 @@ Roles list
 #### Additional Files:
  - `Procfile` - Heroku (PaaS) configuration 
  - `docker/docker-compose.yml` - docker compose (docker orchestration)
- - `docker` folder - images for Docker
+ - `docker/` folder - images for Docker
  - `.travis.yml` CI server settings for notifications via Slack and test coverage reports
+ - `demo/` folder with some demo data (images, excel etc)
 
 ## Notes:
 

@@ -1,13 +1,15 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 before_install:
-  - pip install --user codecov
+- pip install --user codecov
 after_success:
-  - codecov
-
+- codecov
 notifications:
   email: false
   slack: nbakaev:ogljTlQvuQMCZ5Ti9UdRi7iU
-#    on_success: always
-#    on_failure: always
+deploy:
+  provider: bintray
+  file: "./.bintray"
+  user: nbakaev
+  key: c2Bdv/TIjYsPWZHbES7Y2Yr4sH8KwYQP7QQdLeuMUnowxWWbGUKUPwLqtlmWrMwOas+6Hr4EITNXsyYiaFGdfP1rL7bEq0/XvQqPPCBt8ARrXBi3lLnVqZFWDGSN68x34i8uhNngZJLAxtZMF16BaA3dfqfxXrx681TqTGzKZsqDzeTLkjVOKExtKBGahKD6RaZ54z4P+arDo1m2s00sUkqYCijW5BrSL8aZ8r7i5LxNASdOxifCgZRZR2Pm3cXliH0itgDV0NE5ZSlkNAASo/GPPzginQu3VsvmWc9uZP8+Hb9MY0K2YDdp1+GuYYJ0UQeiPmn6LrCqqGGn8toprF9M6DZtH8wf6tuEnNHpiDgk9ueqQTZYp0wuejQ9Z/Y/SQByNx+i+ErqrtUnwIby0NWCSh4T4xZTGya+lD4Fabix++Ch0Njh9U31iG/Cg6ijM2dKQA6swGExtXgzKtGSzC/YAbx0B1H8W0pzuvRvP3KpegXDm9B1FpWo1AdmLg+1rod2WglODqUPQ9RwoqNJ6tU8P25ToS3qODLlYXywK1GXCTo3tVQ8gTfjCLCV8+ouffvzwfWlEqVEXXK4MfReo/gSOgmAW2eemGhf94qzf6oi+P7DIzVwcUl8pAK3IWOC0xbjUtf98YXxKSlJV+5G56SP7BvtVog+lx851G0ipRY=
