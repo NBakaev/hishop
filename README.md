@@ -9,11 +9,11 @@
 
 ## Build & run  
 This project uses Java & Spring Boot.
-To start server use `mvn package & java -jar target/tk.hishop.jar`.
+To start server use `mvn package & java -jar target/ru.nbakaev.hishop.jar`.
 
 ### Notes for compiling
  - After compiling - test will be automatically run. You can skip tests on packaging step with `mvn package -DskipTests`
- - After executing `mvn package` - file `target/tk.hishop.jar` will be created. This is fat jar - fully executable jar file with embedded tomcat (provided by spring boot). So, you don't need anything dependencies, such as tomcat etc. You only need installed java to run program. 
+ - After executing `mvn package` - file `target/ru.nbakaev.hishop.jar` will be created. This is fat jar - fully executable jar file with embedded tomcat (provided by spring boot). So, you don't need anything dependencies, such as tomcat etc. You only need installed java to run program. 
 
 ## Start options
 Web server startup port is described in `application.properties` or environment or VM options on startup
