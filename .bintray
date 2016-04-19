@@ -5,6 +5,10 @@
     "subject": "nbakaev"
   },
 
+  "version": {
+    "name": "0.1"
+    },
+
   "files":
   [
     {"includePattern": "target/tk.hishop.jar", "uploadPattern": "/"}
