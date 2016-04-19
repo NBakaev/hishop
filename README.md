@@ -74,9 +74,9 @@ Roles list
 with any tool that support swagger format, for example, with `Postman`
 
 ### Deployments from travis details
- -  
- -  
- -  
+ -  https://docs.travis-ci.com/user/deployment/bintray#Encrypt-your-API-keyhttps://docs.travis-ci.com/user/encryption-keys/
+ -  https://docs.travis-ci.com/user/encryption-keys/
+ -  https://bintray.com/nbakaev/generic/hishop/view
  
 ## Code snippets
 
