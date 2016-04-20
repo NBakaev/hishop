@@ -22,3 +22,6 @@ target/
 **/.idea/libraries/
 **/.idea/tasks.xml
 **/.idea/dictionaries/
+
+
+pom.xml.versionsBackup
