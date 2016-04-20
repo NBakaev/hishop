@@ -59,6 +59,7 @@ Roles list
  - `docker/` folder - images for Docker
  - `.travis.yml` CI server settings for notifications via Slack and test coverage reports
  - `demo/` folder with some demo data (images, excel etc)
+ - `deploy/publish.sh` CI script for deploy build to binary repository
 
 ## Notes:
 
@@ -75,14 +76,14 @@ with any tool that support swagger format, for example, with `Postman`
 
 ### Continuous Integration
 For CI travis-ci.com for OSS is used.
+Every commit in VCS triggers build on CI and on success - deploy jar file to binary repository.
 
 Note: every build with unique maven version is deployed to `https://bintray.com/nbakaev/maven/hishop/view`. 
-If you will not change version in `pom.xml`- build will be success but artifact will not be deployed to binary repository.
+Every resulted maven build version contains version in `pom.xml` and CI build number (see `deploy/publish.sh`).
 
 ### Deployments from travis details
  -  https://docs.travis-ci.com/user/deployment/bintray
  -  https://docs.travis-ci.com/user/encryption-keys/
- -  https://bintray.com/nbakaev/generic/hishop/view
  
 ## Code snippets
 
@@ -96,5 +97,6 @@ db.getCollectionNames().forEach(function(collName) {
 ```bash
 git update-index --chmod=+x publish.sh
 ```
+
 ### License
 Copyright © 2016 Nikita Bakaev. Licensed under the Apache License.
