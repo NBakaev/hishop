@@ -1,11 +1,13 @@
 # hiShop - e-commerce
 
-[![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status]
+[![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status] [![Download Bintray Widget]][Download Bintray]
 
 [Travis]: https://travis-ci.org/NBakaev/hishop
 [Travis Widget]: https://travis-ci.org/NBakaev/hishop.svg?branch=master
 [Coverage Status]: https://codecov.io/github/NBakaev/hishop?branch=master
 [Coverage Status Widget]: https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg
+[Download Bintray]: https://bintray.com/nbakaev/maven/hishop/_latestVersion
+[Download Bintray Widget]: https://api.bintray.com/packages/nbakaev/maven/hishop/images/download.svg
 
 ## Build & run  
 This project uses Java & Spring Boot.
@@ -84,6 +86,7 @@ Every resulted maven build version contains version in `pom.xml` and CI build nu
 ### Deployments from travis details
  -  https://docs.travis-ci.com/user/deployment/bintray
  -  https://docs.travis-ci.com/user/encryption-keys/
+ - `travis encrypt key=value --add env.global`
  
 ## Code snippets
 
