@@ -1,13 +1,15 @@
 # hiShop - e-commerce
 
-[![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status] [![Download Bintray Widget]][Download Bintray]
+[![Travis Widget]][Travis] [![Coverage Status Widget]][Coverage Status] [![Download Bintray Widget]][Download Bintray] [![Download Docker Widget]][Download Docker]
 
 [Travis]: https://travis-ci.org/NBakaev/hishop
 [Travis Widget]: https://travis-ci.org/NBakaev/hishop.svg?branch=master
 [Coverage Status]: https://codecov.io/github/NBakaev/hishop?branch=master
+[Coverage Docker]: https://hub.docker.com/r/nbakaev/hishop-api-backend/
 [Coverage Status Widget]: https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg
 [Download Bintray]: https://bintray.com/nbakaev/maven/hishop/_latestVersion
 [Download Bintray Widget]: https://api.bintray.com/packages/nbakaev/maven/hishop/images/download.svg
+[Download Docker Widget]: https://img.shields.io/docker/pulls/nbakaev/hishop-api-backend.svg
 
 ## Build & run  
 This project uses Java & Spring Boot.
