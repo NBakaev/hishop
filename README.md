@@ -70,6 +70,7 @@ Roles list
 ### Основные адреса
 В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` нужно использовать `http://localhost:5555/`
 
+ - `https://s2.nbakaev.ru`
  - `http://hishop.herokuapp.com` - test application UI here (index)
  - `http://hishop.herokuapp.com/api/v1/` - REST API Root
  - `http://hishop.herokuapp.com/swagger-ui.html` - Swagger UI - all REST endpoints documentation
