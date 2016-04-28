@@ -13,8 +13,8 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
     PROJECT_VERSION="`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version 2> /dev/null |grep -Ev '(^\[|Download\w+:)'`"
     PROJECT_VERSION_DOCKER="`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version 2> /dev/null |grep -Ev '(^\[|Download\w+:)' | tr + _`"
 
-    echo "PROJECT_VERSION is"
-    echo $PROJECT_VERSION
+    echo "PROJECT_VERSION is $PROJECT_VERSION"
+    echo "PROJECT_VERSION_DOCKER is $PROJECT_VERSION_DOCKER"
 ############# deployDocker
     cd $BASE_DIR/docker/api-backend
 
