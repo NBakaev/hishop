@@ -19,7 +19,7 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
     mv $BASE_DIR/target/ru.nbakaev.hishop.jar $BASE_DIR/docker/api-backend/release.jar
 
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-    docker build --tag=nbakaev/hishop-api-backend:$PROJECT_VERSION .
+    docker build --tag=nbakaev/hishop-api-backend:{$PROJECT_VERSION} .
 #    docker tag hishop-api-backend HUB/___
     docker push nbakaev/hishop-api-backend
 
