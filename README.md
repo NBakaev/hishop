@@ -5,7 +5,7 @@
 [Travis]: https://travis-ci.org/NBakaev/hishop
 [Travis Widget]: https://travis-ci.org/NBakaev/hishop.svg?branch=master
 [Coverage Status]: https://codecov.io/github/NBakaev/hishop?branch=master
-[Coverage Docker]: https://hub.docker.com/r/nbakaev/hishop-api-backend/
+[Download Docker]: https://hub.docker.com/r/nbakaev/hishop-api-backend/
 [Coverage Status Widget]: https://img.shields.io/codecov/c/github/NBakaev/hishop/master.svg
 [Download Bintray]: https://bintray.com/nbakaev/maven/hishop/_latestVersion
 [Download Bintray Widget]: https://api.bintray.com/packages/nbakaev/maven/hishop/images/download.svg
