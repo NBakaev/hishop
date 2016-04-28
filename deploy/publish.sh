@@ -11,7 +11,7 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
     cd $BASE_DIR/docker/api-backend
 
 #    move jar artifact to docker build folder
-    mv $BASE_DIR/target/ru.nbakaev.hishop.jar $BASE_DIR/docker/api-backend/ru.nbakaev.hishop.jar
+    mv $BASE_DIR/target/ru.nbakaev.hishop.jar $BASE_DIR/docker/api-backend/release.jar
 
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
