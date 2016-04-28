@@ -12,6 +12,8 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
     mvn deploy --settings $BASE_DIR/deploy/settings.xml -DperformRelease=true -DskipTests=true -Dmaven.javadoc.skip=true
     PROJECT_VERSION="`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version 2> /dev/null | grep -v '\['`"
 
+    echo "PROJECT_VERSION is"
+    echo $PROJECT_VERSION
 ############# deployDocker
     cd $BASE_DIR/docker/api-backend
 
