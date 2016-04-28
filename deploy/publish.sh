@@ -5,8 +5,8 @@ set -e
 
 PROJECT_VERSION=""
 
-function deployDocker{
-    cd $BASE_DIR/docker/api-backend
+function deployDocker(){
+cd $BASE_DIR/docker/api-backend
 
 #    move jar artifact to docker build folder
     mv $BASE_DIR/target/ru.nbakaev.hishop.jar $BASE_DIR/docker/api-backend/release.jar
@@ -17,7 +17,7 @@ function deployDocker{
     docker push nbakaev/hishop-api-backend
 }
 
-function deployMaven{
+function deployMaven(){
 cd $BASE_DIR
     mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.incrementalVersion}-RELEASE+build.$TRAVIS_JOB_ID
     mvn deploy --settings $BASE_DIR/deploy/settings.xml -DperformRelease=true -DskipTests=true -Dmaven.javadoc.skip=true
