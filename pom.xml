@@ -7,9 +7,9 @@
     <artifactId>hishop</artifactId>
     <version>0.2.2-RELEASE+build.15</version>
     <packaging>jar</packaging>
+    <description>hiShop - e-commerce</description>
 
     <name>web</name>
-    <description>Course work HSE</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -40,6 +40,43 @@
             <url>https://api.bintray.com/maven/nbakaev/maven/hishop/;publish=1</url>
         </repository>
     </distributionManagement>
+
+    <url>http://s2.nbakaev.ru</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments/>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/nbakaev/hishop/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>travis</system>
+        <url>https://travis-ci.org/NBakaev/hishop</url>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <id>nbakaev</id>
+            <name>Nikita Bakaev</name>
+            <email>ya@nbakaev.ru</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:nbakaev/hishop.git</connection>
+        <developerConnection>scm:git:git@github.com:nbakaev/hishop.git</developerConnection>
+        <url>git@github.com:nbakaev/hishop</url>
+        <tag>HEAD</tag>
+    </scm>
+
 
     <dependencies>
 
