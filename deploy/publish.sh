@@ -23,7 +23,6 @@ if [[ $TRAVIS_PULL_REQUEST == "false" ]]; then
 
     docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
     docker build --tag=nbakaev/hishop-api-backend:$PROJECT_VERSION_DOCKER .
-#    docker tag hishop-api-backend HUB/___
     docker push nbakaev/hishop-api-backend
 
     exit $?
