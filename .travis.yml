@@ -1,17 +1,18 @@
 sudo: required
 services:
-  - docker
+- docker
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 before_install:
-  - pip install --user codecov
+- pip install --user codecov
 after_success:
-  - codecov
-  - "$BASE_DIR/deploy/publish.sh"
+- codecov
+- "$BASE_DIR/deploy/publish.sh"
 notifications:
   email: false
-  slack: nbakaev:ogljTlQvuQMCZ5Ti9UdRi7iU
+  slack:
+    secure: KoZGEqKDy8wmbGem1KDqcPZ2unih7zw34QRuRr0OD69f0Gu5I9B+5OOhXmIm47qVDd7vNXvP69IyXXdmrA70jmcV2QJ3451y9IO3lzsW8CbguMZlItBo/kfdNyPLw4Xz9jpi4x5m1fvDWNuNnJT2lCoHsKuKSzhptjC7z/XPPG6lnbTah2D4mbKie5FZJEnRaB+5OiRCvvrKu+BuaS8upXbEhHfop8EyB7c1KDxmkLKKHnV6Rfc0WaTYjpQwZQ2g5TEcTi4Vp8AdUnb3Mix02Hx5wfuj8n06Ouek1YLPANFRa3eesGmYcc2yofXQCOeGiFTnxzhF8ooNZg5Wi0WpgSOv5XCpfJv8E0Y/KDBmns5oyOR7Tpc94RX7+KjGSD7iNWhcZTAE8hxOBnwtTjmx4kiKwpcKDV7MH/l/wXRWjD+biyD+t5BC2XU8+iJCI+jwK2jQKSmScDMxd0+9Yw3ipZheIwIsQeF0yweXvflOOwNelg5ETXWc/wcWEw7SLf4/fz1VRRhKeq4Te9fAAhQ+suWuR4ht6skIUpc6Xr1p0Zj3yaj5rcy+wTInIoQED/Cd4CvMJG+yPryc+CQqGNNexbDXvn+qZh4Yjrtc8E4vV2zTeKOgqsX3mmFo8dXvR4pZ9WZLYYoHhmM279uRVX0RXMACwlXRPgTXhZihZNbpMRQ=
 env:
   global:
   - secure: lgssR0+cvrerrofLDd02C2tH0Ws2i6FNuohwJG34NnfLqWp0g6UYqF/BHV936SrKKGBhSKHKMKSMfQV1S1D1IJ4SHocb+EAPTDFzboeHd9NEc+ZHpB5cC1jKHJ8pAie2LhuvoFNc3hZZeEzIsu1ldQU1gV5IAbE0sP3u8rGI1U9wydVT3KXAH1FtgkrO5GVxcy3GtZF3nMeLaWEU+I2d78CVcoqoRVZvQ0pkU2BXcmqU6jV4sfvr5ENJTeQrh/fCKgmDRSmgTfV2XfuwYmoslZuaXVSrncioK70DvGp7jgwzhqGKQUCp2u2SonDWFMfXz3k781FysyFBhm7hMEnSKbvSSIG7OlZHlrZ0L5NwMOBGB9ww2fYU0innZHi3Yn1ubxSpbdvZvm/uDpuX8JFIhCENoxDft4GG8TuQ1Arq1sHIZQFaqXq/8b0CyE7+ihvbDCAuEMW3WzZcUa8/VP0s/wp9pJryES1uc5zLWV4/tsgd5g6IrRZagnPosEP6LXtIOETuw7XLMdtoJcx2qTpv4kGS9xdGTEBx84wDHvkce2AWqydNoPcGp6UDye+6vIzDxTlSwIeXuEQp5EI7vw+G07VocCifemjOeu7bMkUyv9TUUp87FpdxYk/IDEW3ZXa0BV/zPxKkDpUwxFeUTUj2v8qDYEwiHRcaFAu7rsQpb8c=
