@@ -22,7 +22,7 @@ import java.io.IOException;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class MongoConfiguration {
 
-    @Value("${spring.data.mongodb.uri}")
+    @Value("${spring_data_mongodb_uri}")
     private String productionMongoUrl;
 
     @Value("${mongodb.database}")
