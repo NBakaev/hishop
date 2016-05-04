@@ -25,3 +25,6 @@ target/
 
 
 pom.xml.versionsBackup
+
+# startup script with private api keys
+set_env_start.sh
