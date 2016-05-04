@@ -22,6 +22,21 @@ To start server use `mvn package & java -jar target/ru.nbakaev.hishop.jar`.
 ## Start options
 Web server startup port is described in `application.properties` or environment or VM options on startup
 
+### Mandatory options
+`NOTE:` You must pass to application API keys of services to start application:
+
+  - MongoDB (database)
+  - mailgun credentials (send email messages with DKIM and spam filter)
+   
+For example
+```bash
+java -jar target/ru.nbakaev.hishop.jar \
+    --spring_data_mongodb_uri="mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
+    --mailgun_api_key="key-b305ee369ffb69e8b559" \
+    --mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages" \
+    --spring.output.ansi.enabled=ALWAYS
+```
+
 #### Program arguments
 
  - `--spring.output.ansi.enabled=ALWAYS` to enable color logging
