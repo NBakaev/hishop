@@ -70,13 +70,13 @@ Roles list
  - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
 
 ### Основные адреса
-В случае запуска на локальной машине вместо `http://hishop.herokuapp.com` нужно использовать `http://localhost:5555/`
+В случае запуска на локальной машине вместо `https://s2.nbakaev.ru` нужно использовать `http://localhost:5555/`
 
  - `https://s2.nbakaev.ru`
- - `http://hishop.herokuapp.com` - test application UI here (index)
- - `http://hishop.herokuapp.com/api/v1/` - REST API Root
- - `http://hishop.herokuapp.com/swagger-ui.html` - Swagger UI - all REST endpoints documentation
- - `http://hishop.herokuapp.com/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
+ - `https://s2.nbakaev.ru` - test application UI here (index)
+ - `https://s2.nbakaev.ru/api/v1/` - REST API Root
+ - `https://s2.nbakaev.ru/swagger-ui.html` - Swagger UI - all REST endpoints documentation
+ - `https://s2.nbakaev.ru/v2/api-docs` - Swagger endpoint. You can import all REST api endpoints with methods, name, params etc 
 with any tool that support swagger format, for example, with `Postman`
 
 ### Continuous Integration
