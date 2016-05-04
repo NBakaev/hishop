@@ -17,10 +17,10 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 @Configuration
 public class EmailConfig {
 
-    @Value("${mailgun.api.key}")
+    @Value("${mailgun_api_key}")
     private String mailgunApiKey;
 
-    @Value("${mailgun.url}")
+    @Value("${mailgun_url}")
     private String mailgunApiUrl;
 
     @Bean
