@@ -116,6 +116,7 @@ Roles list
 ## Notes:
 
  - `https://docs.google.com/document/d/1QhCjvqiGACP9OQohqe5BMcsHoedugAchMLozXtCoW64/edit?usp=sharing` - Бакаев Никита. Текст курсовой работы в Google Docs
+ - `https://docs.google.com/presentation/d/1UFX-xWNX8DwdD1uIw4yO7Gc8Snupf74qfb5MSyjcgJU/edit?usp=sharing` - Бакаев Никита. Презентация курсовой работы в Google Docs
 
 ### Основные адреса
 В случае запуска на локальной машине вместо `https://s2.nbakaev.ru` нужно использовать `http://localhost:5555/`
