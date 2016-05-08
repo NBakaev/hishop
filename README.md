@@ -55,10 +55,10 @@ Use any method that is more preferred to you or combine them.
 
 ```bash
 docker run -d -p 5555:5555 \
-    -e  "spring_data_mongodb_uri=mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
-    -e mailgun_api_key="key-b305ee369ffb69e8b559" \
+    -e "spring_data_mongodb_uri=mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
+    -e "mailgun_api_key=key-b305ee369ffb69e8b559" \
     -e "mailgun_url=https://api.mailgun.net/v3/sandbox21473e1b5f3344c2950ac2e779eb7a46.mailgun.org/messages" \
-    -e spring.output.ansi.enabled=ALWAYS \
+    -e "spring.output.ansi.enabled=ALWAYS" \
     --name hishop1 nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392
 ```
 
@@ -68,6 +68,7 @@ Docker notes:
  - you can replace `nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392` to another version. All [version are here on docker hub](https://hub.docker.com/r/nbakaev/hishop-api-backend/tags/)
  - `-p 5555:5555` by default docker create fully independent network environment with ports that are not hosts (see linux [cgroups](https://en.wikipedia.org/wiki/Cgroups)). 
 `-p 5555:5555` option map container port 5555 to host than make available service outside.
+ - you can see running containers with `docker ps`. See logs of each container with ` docker logs -f hishop1` (replace hishop1 with container id or name)
 
 #### Program arguments
 
