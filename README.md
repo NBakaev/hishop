@@ -51,6 +51,22 @@ java -jar target/ru.nbakaev.hishop.jar
 
 Use any method that is more preferred to you or combine them.
 
+### Docker
+
+```bash
+docker run -d \
+    -e  "spring_data_mongodb_uri=mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
+    -e mailgun_api_key="key-b305ee369ffb69e8b559" \
+    -e "mailgun_url=https://api.mailgun.net/v3/sandbox21473e1b5f3344c2950ac2e779eb7a46.mailgun.org/messages" \
+    -e spring.output.ansi.enabled=ALWAYS \
+    --name hishop1 nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392
+```
+
+Docker notes:
+
+ - you can not pass `--name hishop1`. This is unic container name. Instead container id will used provided. 
+ - you can replace `nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392` to another version. All [version are here on docker hub](https://hub.docker.com/r/nbakaev/hishop-api-backend/tags/)
+
 #### Program arguments
 
  - `--spring.output.ansi.enabled=ALWAYS` to enable color logging
