@@ -18,9 +18,10 @@ To start server use `mvn package & java -jar target/ru.nbakaev.hishop.jar`.
 ### Notes for compiling
  - After compiling - test will be automatically run. You can skip tests on packaging step with `mvn package -DskipTests`
  - After executing `mvn package` - file `target/ru.nbakaev.hishop.jar` will be created. This is fat jar - fully executable jar file with embedded tomcat (provided by spring boot). So, you don't need anything dependencies, such as tomcat etc. You only need installed java to run program. 
+ - In CI environment variables with API keys are set up to use in tests. But if you want to run tests locally, you must set up Mandatory options.
 
 ## Start options
-Web server startup port is described in `application.properties` or environment or VM options on startup
+Web server startup port is described in `application.properties`. You can override it in environment or VM options on startup
 
 ### Mandatory options
 `NOTE:` You must pass to application API keys of services to start application:
@@ -36,6 +37,19 @@ java -jar target/ru.nbakaev.hishop.jar \
     --mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages" \
     --spring.output.ansi.enabled=ALWAYS
 ```
+
+Example above use command-line arguments to java program. You can use the same thing with environment variables:
+```bash
+#!/usr/bin/env bash
+export spring_data_mongodb_uri="mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop"
+export mailgun_api_key="key-b305ee369ffb69e8b559"
+export mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages"
+spring.output.ansi.enabled=ALWAYS
+
+java -jar target/ru.nbakaev.hishop.jar
+````
+
+Use any method that is more preferred to you or combine them.
 
 #### Program arguments
 
