@@ -44,7 +44,7 @@ Example above use command-line arguments to java program. You can use the same t
 export spring_data_mongodb_uri="mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop"
 export mailgun_api_key="key-b305ee369ffb69e8b559"
 export mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages"
-spring.output.ansi.enabled=ALWAYS
+export spring.output.ansi.enabled=ALWAYS
 
 java -jar target/ru.nbakaev.hishop.jar
 ````
