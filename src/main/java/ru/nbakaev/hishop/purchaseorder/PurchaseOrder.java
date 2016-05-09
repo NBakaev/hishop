@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import ru.nbakaev.hishop.good.Good;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,8 @@ import java.util.List;
 @Document
 public class PurchaseOrder extends BasicClassAbstract {
 
-    @ApiModelProperty("Price of good as double")
-    private double price;
+    @ApiModelProperty("Price of good")
+    private BigDecimal price;
 
     @ApiModelProperty("Does this order is full paid")
     private boolean paid = false;
@@ -53,11 +54,11 @@ public class PurchaseOrder extends BasicClassAbstract {
         this.goodList = goodList;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

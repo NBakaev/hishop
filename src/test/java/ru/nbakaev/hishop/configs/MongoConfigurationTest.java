@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import ru.nbakaev.hishop.configs.database.converters.MongoHelpers;
 
 import java.io.IOException;
 
@@ -57,7 +58,7 @@ public class MongoConfigurationTest {
         MongodProcess mongod = mongodExecutable.start();
 
         MongoClient mongo = new MongoClient("localhost", port);
-        MongoOperations mongoTemplate = new MongoTemplate(mongo, database);
+        MongoOperations mongoTemplate = MongoHelpers.MongoConverter(new SimpleMongoDbFactory(mongo, database));
         return mongoTemplate;
     }
 

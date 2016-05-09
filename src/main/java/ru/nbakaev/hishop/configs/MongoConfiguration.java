@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import ru.nbakaev.hishop.configs.database.converters.MongoHelpers;
 
 import java.io.IOException;
 
@@ -32,7 +33,7 @@ public class MongoConfiguration {
     @Bean
     public MongoOperations mongoProduction() throws IOException {
         Mongo mongo = new MongoClient(new MongoClientURI(productionMongoUrl));
-        MongoOperations mongoTemplate = new MongoTemplate(mongo, database);
+        MongoOperations mongoTemplate = MongoHelpers.MongoConverter(new SimpleMongoDbFactory(mongo, database));
         return mongoTemplate;
     }
 }
