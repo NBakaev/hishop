@@ -7,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ru.nbakaev.hishop.entity.filters.requestdto.GoodFilterRequestDto;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -135,6 +136,8 @@ public class BasicExcelObjectPrinter {
                         cell.setCellValue((Date) obj);
                     } else if (obj instanceof Boolean) {
                         cell.setCellValue((Boolean) obj);
+                    } else if (obj instanceof BigDecimal) {
+                        cell.setCellValue(((BigDecimal) obj).doubleValue());
                     }
 
                 }

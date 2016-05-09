@@ -9,8 +9,10 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import ru.nbakaev.hishop.email.EmailSenderService;
 import ru.nbakaev.hishop.entity.CreatedInfo;
+import ru.nbakaev.hishop.good.Good;
 import ru.nbakaev.hishop.users.CurrentUser;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -66,6 +68,11 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
         // this is trick which can be replaced with AOP
         purchaseOrder.setCreatedInfo(new CreatedInfo(new Date(), currentUser.getCurrentUser().getId()));
+
+        // sum price of every good
+        BigDecimal goodPriceSum = purchaseOrder.getGoodList().stream().map(Good::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        purchaseOrder.setPrice(goodPriceSum);
 
         mongoTemplate.insert(purchaseOrder);
         try {
