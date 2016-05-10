@@ -1,0 +1,12 @@
+[Unit]
+Description=Hishop container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/docker start -a hishop1
+ExecStop=/usr/bin/docker stop -t 2 hishop1
+
+[Install]
+WantedBy=multi-user.target
