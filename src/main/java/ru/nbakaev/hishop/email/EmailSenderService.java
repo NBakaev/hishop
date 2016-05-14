@@ -29,18 +29,16 @@ import java.util.Map;
 @Service
 public class EmailSenderService {
 
-    @Autowired
-    @Qualifier("plainTextEmailSender")
     private WebResource plainTextEmailSender;
-
     private final Handlebars handlebars = new Handlebars();
     private final UserAccountRepository userAccountRepository;
     private Template userSendTemplate;
     private Template orderSendTemplate;
 
     @Autowired
-    public EmailSenderService(UserAccountRepository userAccountRepository) {
+    public EmailSenderService(UserAccountRepository userAccountRepository, @Qualifier("plainTextEmailSender") WebResource plainTextEmailSender) {
         this.userAccountRepository = userAccountRepository;
+        this.plainTextEmailSender = plainTextEmailSender;
         try {
             userSendTemplate = handlebars.compile("templates/createUserAccountEmail");
             orderSendTemplate = handlebars.compile("templates/purchaseEmail");
