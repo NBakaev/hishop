@@ -12,6 +12,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.annotations.Test;
 import ru.nbakaev.hishop.StartApplication;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/21/2016.
  * All Rights Reserved
@@ -29,6 +32,8 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private ExecutorService executorService = Executors.newFixedThreadPool(80);
+
     @Test
     public void createMillionGoodsTest() {
 
@@ -40,10 +45,15 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
                 logger.info("Creating good with number: " + i);
             }
 
-            Good good = new Good();
-            good.setName("Good-"+i);
+            int finalI = i;
+            executorService.submit( () -> {
+                Good good = new Good();
+                good.setName("Good-"+ finalI);
 
-            good = goodRepository.createGood(good);
+                good = goodRepository.createGood(good);
+            });
+
+
 //            createdGoods.add(good);
 
         }
