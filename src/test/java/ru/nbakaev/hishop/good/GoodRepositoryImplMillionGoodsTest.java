@@ -14,6 +14,7 @@ import ru.nbakaev.hishop.StartApplication;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/21/2016.
@@ -37,24 +38,30 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
     @Test
     public void createMillionGoodsTest() {
 
-//        List<Good> createdGoods = new ArrayList<>();
+        logger.info("Start creating million good test");
 
-        for (int i=0; i < 5_000_000; i++){
+        for (int i = 0; i < 5_000_000; i++) {
 
-            if (i % 100_000 == 0){
+            if (i % 100_000 == 0) {
                 logger.info("Creating good with number: " + i);
             }
 
             int finalI = i;
-            executorService.submit( () -> {
+            executorService.submit(() -> {
                 Good good = new Good();
-                good.setName("Good-"+ finalI);
+                good.setName("Good-" + finalI);
 
                 good = goodRepository.createGood(good);
             });
 
+            executorService.shutdownNow();
+            try {
+                executorService.awaitTermination(1, TimeUnit.MINUTES);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-//            createdGoods.add(good);
+            logger.info("End creating million good test");
 
         }
 
