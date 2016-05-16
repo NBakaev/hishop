@@ -43,12 +43,12 @@ public class GoodExcelExportService {
         int i = 0;
 
         sheetData.setHeaders(new Object[]{"№", "ID",
-                "NAME",
-                "PRICE",
-                "NUMBER_AVAILABLE",
-                "NUMBER_SOLD",
-                "DESCRIPTION",
-                "CREATED_DATE"
+                "Название",
+                "Цена",
+                "Доступное число",
+                "Продано",
+                "Описание",
+                "Дата создания"
         });
 
         for (Good good : (List<Good>) goodDtoResult.getResultedObjects()) {
