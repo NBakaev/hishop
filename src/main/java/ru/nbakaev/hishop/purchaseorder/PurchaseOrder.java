@@ -2,8 +2,9 @@ package ru.nbakaev.hishop.purchaseorder;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.nbakaev.hishop.good.Good;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
+import ru.nbakaev.hishop.good.Good;
+import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -29,6 +30,16 @@ public class PurchaseOrder extends BasicClassAbstract {
     @ApiModelProperty("Ids of goods in order")
     private List<Good> goodList = new ArrayList<>();
 
+    @ApiModelProperty("Purchase status")
+    private PurchaseStatus purchaseStatus = new PurchaseStatus();
+
+    public PurchaseStatus getPurchaseStatus() {
+        return purchaseStatus;
+    }
+
+    public void setPurchaseStatus(PurchaseStatus purchaseStatus) {
+        this.purchaseStatus = purchaseStatus;
+    }
 
     public boolean isRefunded() {
         return refunded;

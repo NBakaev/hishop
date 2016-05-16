@@ -87,6 +87,10 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         purchaseOrder.setPrice(goodPriceSum);
 
+        purchaseOrder.setPaid(false);
+        purchaseOrder.setRefunded(false);
+        purchaseOrder.setPurchaseStatus(shopSettingsRepository.getShopSettings().getFirstPurchaseStatus());
+
         mongoTemplate.insert(purchaseOrder);
         try {
             sendPurchaseToGoogleAnalytics(purchaseOrder);
