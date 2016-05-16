@@ -54,16 +54,17 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
                 good = goodRepository.createGood(good);
             });
 
-            executorService.shutdownNow();
-            try {
-                executorService.awaitTermination(1, TimeUnit.MINUTES);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            logger.info("End creating million good test");
-
         }
+
+        executorService.shutdownNow();
+        try {
+            executorService.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        logger.info("End creating million good test");
+
 
     }
 
