@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import ru.nbakaev.hishop.customer.Customer;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
 
 import java.util.ArrayList;
@@ -26,16 +27,6 @@ public class UserAccount extends BasicClassAbstract {
     @JsonIgnore
     private String password;
 
-    // just some user defined variables
-    @TextIndexed
-    private String firstname;
-
-    @TextIndexed
-    private String lastname;
-
-    @TextIndexed
-    private String patronymic;
-
     // spring security
     @ApiModelProperty("is approved (enabled) profile")
     private String status;
@@ -48,6 +39,17 @@ public class UserAccount extends BasicClassAbstract {
     @ApiModelProperty("List of roles - API allowed operations")
     private List<String> roles = new ArrayList<>();
 
+    @ApiModelProperty("Customer profile with name, address etc...")
+    private Customer customer = new Customer();
+
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public String getUsername() {
         return username;
@@ -55,30 +57,6 @@ public class UserAccount extends BasicClassAbstract {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
     }
 
     public String getStatus() {

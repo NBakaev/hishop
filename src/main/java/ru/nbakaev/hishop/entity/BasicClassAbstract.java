@@ -28,6 +28,12 @@ public abstract class BasicClassAbstract {
 
     private CreatedInfo createdInfo = new CreatedInfo();
 
+    public BasicClassAbstract() {
+    }
+
+    public BasicClassAbstract(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;
