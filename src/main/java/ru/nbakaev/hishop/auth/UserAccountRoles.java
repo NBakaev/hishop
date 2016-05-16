@@ -1,6 +1,7 @@
 package ru.nbakaev.hishop.auth;
 
 /**
+ * List of spring security roles
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/23/2016.
  * All Rights Reserved
  */

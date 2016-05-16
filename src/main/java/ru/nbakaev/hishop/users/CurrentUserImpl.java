@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 /**
+ * Context that holds spring security thread local user authenticated info
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/23/2016.
  * All Rights Reserved
  */

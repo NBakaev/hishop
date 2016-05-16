@@ -24,7 +24,7 @@ import java.util.List;
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/23/2016.
  * All Rights Reserved
  *
- * Authenticate userAccount
+ * Authenticate userAccount via HTTP base auth
  */
 @Configuration
 public class LocalAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
