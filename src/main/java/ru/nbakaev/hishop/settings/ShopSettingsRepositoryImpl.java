@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
 import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatus;
 import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatusRepository;
 
@@ -13,6 +14,7 @@ import javax.annotation.PostConstruct;
  * Created by Nikita Bakaev, ya@nbakaev.ru on 5/16/2016.
  * All Rights Reserved
  */
+@Service
 public class ShopSettingsRepositoryImpl implements ShopSettingsRepository {
 
     private final MongoOperations mongoTemplate;
