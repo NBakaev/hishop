@@ -1,6 +1,7 @@
 package ru.nbakaev.hishop.configs;
 
 import com.mongodb.MongoClient;
+import com.mongodb.WriteConcern;
 import de.flapdoodle.embed.mongo.Command;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodProcess;
@@ -8,6 +9,8 @@ import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.*;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.config.IRuntimeConfig;
+import de.flapdoodle.embed.process.config.io.ProcessOutput;
+import de.flapdoodle.embed.process.io.NullProcessor;
 import de.flapdoodle.embed.process.runtime.Network;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,9 +43,12 @@ public class MongoConfigurationTest {
                         .defaults(command)
                         .download(new DownloadConfigBuilder()
                                 .defaultsForCommand(command).build()))
+                .processOutput(new ProcessOutput(new NullProcessor(), new NullProcessor(), new NullProcessor()))
                 .build();
 
         IMongodConfig mongodConfig = new MongodConfigBuilder()
+                .cmdOptions(new MongoCmdOptionsBuilder()
+                        .build())
                 .version(Version.V3_2_0)
                 .net(new Net(port, Network.localhostIsIPv6()))
                 .build();

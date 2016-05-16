@@ -49,6 +49,12 @@ public class Good extends BasicClassAbstract {
 
     private List<String> avatarUrl;
 
+    public Good() {
+    }
+
+    public Good(String name) {
+        super(name);
+    }
 
     @Override
     public boolean equals(Object o) {
