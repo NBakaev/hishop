@@ -1,6 +1,7 @@
 package ru.nbakaev.hishop.purchaseorder;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -10,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import ru.nbakaev.hishop.email.EmailSenderService;
 import ru.nbakaev.hishop.entity.CreatedInfo;
 import ru.nbakaev.hishop.good.Good;
+import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatusRepository;
+import ru.nbakaev.hishop.settings.ShopSettingsRepository;
 import ru.nbakaev.hishop.users.CurrentUser;
 
 import java.math.BigDecimal;
@@ -32,19 +35,29 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
     private final RestTemplate restTemplate;
     private final EmailSenderService emailSenderService;
     private final CurrentUser currentUser;
+    private final PurchaseStatusRepository purchaseStatusRepository;
+    private final ShopSettingsRepository shopSettingsRepository;
 
     @Autowired
-    public PurchaseOrderRepositoryImpl(final MongoOperations mongoTemplate, final RestTemplate restTemplate, final EmailSenderService emailSenderService, final CurrentUser currentUser) {
+    public PurchaseOrderRepositoryImpl(final MongoOperations mongoTemplate, final RestTemplate restTemplate, final EmailSenderService emailSenderService, final CurrentUser currentUser,
+                                       final PurchaseStatusRepository purchaseStatusRepository, final ShopSettingsRepository shopSettingsRepository,
+                                       @Value("${google.analytics.tid}") String googleAnalyticsId,
+                                       @Value("${google.analytics.ta}") String googleAnalyticsTA) {
         this.restTemplate = restTemplate;
         this.mongoTemplate = mongoTemplate;
         this.emailSenderService = emailSenderService;
         this.currentUser = currentUser;
+        this.purchaseStatusRepository = purchaseStatusRepository;
+        this.shopSettingsRepository = shopSettingsRepository;
+        this.baseUrl = googleAnalyticsId;
+        this.googleAnalyticsTA = googleAnalyticsTA;
     }
 
     // this is default google analytics url
     // t = type
     // tid = id of account in GA
-    private String baseUrl = "http://www.google-analytics.com/collect?v=1&tid=UA-73503004-1&t=transaction";
+    private final String baseUrl;
+    private final String googleAnalyticsTA;
 
     private void sendPurchaseToGoogleAnalytics(PurchaseOrder purchaseOrder) {
         String clientId = purchaseOrder.getCreatedInfo().getCreatedById();
@@ -54,7 +67,7 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
         StringBuilder builder = new StringBuilder(baseUrl);
         builder.append("&ti=").append(purchaseOrder.getId());
-        builder.append("&ta=").append("hishop.tk");
+        builder.append("&ta=").append(googleAnalyticsTA);
         builder.append("&tr=").append(purchaseOrder.getPrice());
         builder.append("&ta=").append(purchaseOrder.getPrice());
         builder.append("&cid=").append(clientId);

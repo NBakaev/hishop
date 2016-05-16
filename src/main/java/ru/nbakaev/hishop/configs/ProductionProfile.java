@@ -9,8 +9,8 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
 @Configuration
-@Profile("production")
 @Order(Ordered.HIGHEST_PRECEDENCE)
+@Profile("production")
 @PropertySource("classpath:application-production.properties")
 public class ProductionProfile {
 

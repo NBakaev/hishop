@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ru.nbakaev.hishop.auth.LocalAuthenticationProvider;
+import ru.nbakaev.hishop.auth.UserAccountRoles;
 
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/10/2016.
@@ -32,7 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
-                .antMatchers("/actuator/**").hasRole("ROOT_ADMIN")
+                .antMatchers("/actuator/**").hasRole(UserAccountRoles.ROLE_ADMIN)
                 .antMatchers("/v2/api-docs/**").permitAll()
                 .antMatchers("/**").permitAll()
                 .and()

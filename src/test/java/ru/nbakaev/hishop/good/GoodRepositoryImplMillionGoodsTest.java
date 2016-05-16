@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -26,13 +25,9 @@ import java.util.concurrent.TimeUnit;
 public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    private MongoOperations mongoOperations;
-
-    @Autowired
     private GoodRepository goodRepository;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
     private ExecutorService executorService = Executors.newFixedThreadPool(80);
 
     @Test

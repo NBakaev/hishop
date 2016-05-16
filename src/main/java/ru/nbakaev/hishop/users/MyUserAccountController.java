@@ -2,6 +2,7 @@ package ru.nbakaev.hishop.users;
 
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.nbakaev.hishop.auth.UserAccountRoles;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,13 +23,16 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/api/v1/myaccount")
 @Api("My user account")
+@Secured({UserAccountRoles.ROLE_USER})
 public class MyUserAccountController {
 
     private final UserAccountRepository userAccountRepository;
+    private final CurrentUser currentUser;
 
     @Autowired
-    public MyUserAccountController(final UserAccountRepository userAccountRepository) {
+    public MyUserAccountController(final UserAccountRepository userAccountRepository, final CurrentUser currentUser) {
         this.userAccountRepository = userAccountRepository;
+        this.currentUser = currentUser;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -44,21 +49,13 @@ public class MyUserAccountController {
     public
     @ResponseBody
     UserAccount updateUserAccount(@RequestBody UserAccount userAccount, HttpServletRequest request) {
-        Authentication a = SecurityContextHolder.getContext().getAuthentication();
 
-        if (a.getPrincipal().equals("anonymousUser")) {
-            throw new BadCredentialsException("You are not authenticated");
-        }
-
-        User currentUser = (User) a.getPrincipal();
-        UserAccount myUserAccount = userAccountRepository.findByUsername(currentUser.getUsername());
+        UserAccount myUserAccount = userAccountRepository.findByUsername(currentUser.getCurrentUser().getUsername());
 
         if (myUserAccount != null) {
 
             // allow to change only firstname, lastname, patronymic
-            myUserAccount.setFirstname(userAccount.getFirstname());
-            myUserAccount.setLastname(userAccount.getLastname());
-            myUserAccount.setPatronymic(userAccount.getPatronymic());
+            myUserAccount.setCustomer(userAccount.getCustomer());
 
             userAccountRepository.updateUserAccount(myUserAccount);
             return userAccount;

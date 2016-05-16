@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class BeansConfigs {
 
-    public
     @Scope(BeanDefinition.SCOPE_PROTOTYPE)
     @Bean
     RestTemplate restTemplate() throws Exception {
@@ -18,7 +17,6 @@ public class BeansConfigs {
         return restTemplate;
     }
 
-    public
     @Bean
     PasswordEncoder passwordEncoder() {
         return new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
