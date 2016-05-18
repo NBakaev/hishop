@@ -36,5 +36,38 @@ public class MongoConfiguration {
         MongoOperations mongoTemplate = MongoHelpers.MongoConverter(new SimpleMongoDbFactory(mongo, database));
         return mongoTemplate;
     }
+
+//    Here is example of connected to mongodb shards/replica sets
+//
+//    @Bean
+//    MongoClient mongoClient() throws Exception {
+//
+//        MongoClient mongoClient = null;
+//
+//        String username = "";
+//        String password = "";
+//
+//        List<ServerAddress> serverAddresses = new ArrayList<>();
+//        // add replicas & shards here to array
+//
+//        // database - this is authentication database - for admin user this is 'admin'
+//        MongoCredential mongoCredentials = MongoCredential.createScramSha1Credential(username, database, password.toCharArray());
+//
+//        List<MongoCredential> mongoCredentialsList = new LinkedList<>();
+//        mongoCredentialsList.add(mongoCredentials);
+//
+//        mongoClient = new MongoClient(serverAddresses, mongoCredentialsList);
+//        return mongoClient;
+//    }
+//
+//    @Bean
+//    MongoTemplate mainDataBaseTemplate() throws Exception {
+//        MongoDbFactory mongoDbFactory = new SimpleMongoDbFactory(mongoClient(), database);
+//
+//        // if we have not - create connection
+//        MongoTemplate mongoTemplate = MongoHelpers.MongoConverter(mongoDbFactory);
+//        return mongoTemplate;
+//    }
+
 }
 
