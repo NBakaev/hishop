@@ -34,7 +34,7 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
     private GoodRepository goodRepository;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-    private ThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(80);
+    private ThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(30);
 
     @Test
     public void createMillionGoodsTest() {
@@ -50,15 +50,15 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
                 Good good = new Good("Good-" + finalI);
 
                 try {
-                    good = goodRepository.createGood(good);
+                    goodRepository.createGood(good);
                 } catch (Exception e) {
                     logger.error("executorService, mongodb", e);
                 }
 
-                // log every submitted 100_000 records
-                if (finalI % 100_000 == 0) {
-                    logger.info("Creating good with number: {}", finalI);
-                }
+//                // log every submitted 100_000 records
+//                if (finalI % 100_000 == 0) {
+//                    logger.info("Creating good with number: {}", finalI);
+//                }
             });
 
         }

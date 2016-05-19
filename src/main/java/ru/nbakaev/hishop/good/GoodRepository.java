@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface GoodRepository {
 
+    List<Good> createGoods(List<Good> goods);
+
     /**
      * Create new good
      *

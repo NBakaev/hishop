@@ -28,6 +28,12 @@ public class GoodRepositoryImpl implements GoodRepository {
     }
 
     @Override
+    public List<Good> createGoods(List<Good> goods) {
+        mongoTemplate.insert(goods, Good.class);
+        return goods;
+    }
+
+    @Override
     public Good createGood(Good good) {
         mongoTemplate.insert(good);
         return good;
