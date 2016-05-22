@@ -12,6 +12,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.nbakaev.hishop.StartApplication;
+import ru.nbakaev.hishop.entity.filters.requestdto.GoodFilterRequestDto;
+import ru.nbakaev.hishop.entity.filters.responsedto.GoodResultResponseDto;
 
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 2/21/2016.
@@ -31,15 +33,27 @@ public class GoodRepositoryImplTest extends AbstractTestNGSpringContextTests {
     @Test
     public void createGoodTest() {
         Good good = new Good();
-        good.setName("Apple");
+        good.setName("Apple iPhone 6s");
         goodRepository.createGood(good);
 
-        Criteria criteria = new Criteria().and("id").is(good.getId()).and("name").is("Apple");
+        Criteria criteria = new Criteria().and("id").is(good.getId()).and("name").is(good.getName());
         Query query = new Query(criteria);
 
         Good goodFromDb = mongoOperations.findOne(query, Good.class);
 
         Assert.assertEquals(good, goodFromDb);
+    }
+
+    @Test(dependsOnMethods = {"createGoodTest"})
+    public void fullTextSearchGoodTest() {
+
+        GoodFilterRequestDto goodFilterRequestDto =  new GoodFilterRequestDto();
+        goodFilterRequestDto.setUseFullTextSearch(true);
+        goodFilterRequestDto.setFullTextSearchRequest("iPhone");
+
+        GoodResultResponseDto responseDto = goodRepository.getGoodsByDto(goodFilterRequestDto);
+
+        Assert.assertEquals(responseDto.getRelevantObjectsNumber(), 1);
     }
 
 }

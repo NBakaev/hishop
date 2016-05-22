@@ -36,13 +36,13 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private ThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(30);
 
-    @Test
+    @Test(enabled = false)
     public void createMillionGoodsTest() {
 
         logger.info("Start creating million good test");
         long startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < 1_000_000; i++) {
+        for (int i = 0; i < 500_000; i++) {
 
             // for java 8 lambda should be effective final
             int finalI = i;

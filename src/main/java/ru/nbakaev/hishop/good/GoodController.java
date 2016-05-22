@@ -94,7 +94,7 @@ public class GoodController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(BasicExcelObjectPrinter.EXCEL_MIME_TYPE));
 
-        ResponseEntity responseEntity = new ResponseEntity(goodRepository.getGoodsByDto(goodEntityDto), headers, HttpStatus.ACCEPTED);
+        ResponseEntity responseEntity = new ResponseEntity(goodExcelExportService.getGoodsExcel(goodEntityDto), headers, HttpStatus.OK);
         return responseEntity;
     }
 
@@ -109,7 +109,7 @@ public class GoodController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(BasicExcelObjectPrinter.EXCEL_MIME_TYPE));
 
-        ResponseEntity responseEntity = new ResponseEntity(goodExcelExportService.getGoodsExcel(goodEntityDto), headers, HttpStatus.ACCEPTED);
+        ResponseEntity responseEntity = new ResponseEntity(goodExcelExportService.getGoodsExcel(goodEntityDto), headers, HttpStatus.OK);
         return responseEntity;
     }
 
