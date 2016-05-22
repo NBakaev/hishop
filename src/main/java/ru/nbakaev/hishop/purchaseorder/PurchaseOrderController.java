@@ -33,6 +33,7 @@ public class PurchaseOrderController {
         return purchaseOrder;
     }
 
+    @Secured({UserAccountRoles.ROLE_ADMIN})
     @RequestMapping(value = "", method = RequestMethod.GET)
     public
     @ResponseBody
