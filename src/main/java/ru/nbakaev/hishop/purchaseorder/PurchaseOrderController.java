@@ -5,8 +5,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.nbakaev.hishop.auth.UserAccountRoles;
+import ru.nbakaev.hishop.configs.InvalidRequestException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -28,8 +30,14 @@ public class PurchaseOrderController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public
     @ResponseBody
-    PurchaseOrder addNewPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request) {
+    PurchaseOrder addNewPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder, HttpServletRequest request, HttpServletResponse response) {
+
+        if (purchaseOrder.getGoodList() == null || purchaseOrder.getGoodList().size() == 0){
+            throw new InvalidRequestException("You must set goods");
+        }
+
         purchaseOrderRepository.createNewPurchaseOrder(purchaseOrder);
+        response.setStatus(HttpServletResponse.SC_CREATED);
         return purchaseOrder;
     }
 

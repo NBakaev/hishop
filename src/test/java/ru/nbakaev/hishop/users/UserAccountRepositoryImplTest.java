@@ -2,8 +2,6 @@ package ru.nbakaev.hishop.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -34,8 +32,8 @@ public class UserAccountRepositoryImplTest extends AbstractTestNGSpringContextTe
     @Autowired
     private WebApplicationContext webApplicationContext;
 
-    private static final UserAccount account;
-    private static final String userPassword;
+    public static final UserAccount account;
+    public static final String userPassword;
     private MockMvc mockMvc;
 
     static {
@@ -51,7 +49,7 @@ public class UserAccountRepositoryImplTest extends AbstractTestNGSpringContextTe
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).apply(springSecurity()).build();
     }
 
-    @Test
+    @Test(groups={"userAccount.createdUser"})
     public void testCreateUser() throws Exception {
         userAccountRepository.createUser(account);
     }

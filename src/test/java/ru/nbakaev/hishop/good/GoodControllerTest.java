@@ -61,7 +61,7 @@ public class GoodControllerTest extends AbstractTestNGSpringContextTests {
 
         Good goodInDb = goodRepository.getGoodById(good.getId());
 
-        Assert.assertEquals(good, goodInDb);
+        Assert.assertEquals(good.getId(), goodInDb.getId());
     }
 
     @Test

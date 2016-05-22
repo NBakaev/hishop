@@ -89,6 +89,8 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
         purchaseOrder.setPaid(false);
         purchaseOrder.setRefunded(false);
+
+        // this is first status
         purchaseOrder.setPurchaseStatus(shopSettingsRepository.getShopSettings().getFirstPurchaseStatus());
 
         mongoTemplate.insert(purchaseOrder);

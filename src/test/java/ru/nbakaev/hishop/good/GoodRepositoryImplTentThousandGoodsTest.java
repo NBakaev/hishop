@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 @SpringApplicationConfiguration(classes = StartApplication.class)
 @WebAppConfiguration
 @ActiveProfiles("development")
-public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringContextTests {
+public class GoodRepositoryImplTentThousandGoodsTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private MongoOperations mongoOperations;
@@ -36,13 +36,13 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private ThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(30);
 
-    @Test(enabled = false)
+    @Test
     public void createMillionGoodsTest() {
 
         logger.info("Start creating million good test");
         long startTime = System.currentTimeMillis();
 
-        for (int i = 0; i < 500_000; i++) {
+        for (int i = 0; i < 10_000; i++) {
 
             // for java 8 lambda should be effective final
             int finalI = i;
@@ -68,8 +68,10 @@ public class GoodRepositoryImplMillionGoodsTest extends AbstractTestNGSpringCont
             long completedTasks = executorService.getCompletedTaskCount();
             long executionTime = (System.currentTimeMillis() - startTime) / 1000;
 
-            logger.info("es tasksCount={}, completed={}", executorService.getTaskCount(), completedTasks);
-            logger.warn("inserts per sec={}", executorService.getCompletedTaskCount() / executionTime);
+            if (executionTime > 0) {
+                logger.info("es tasksCount={}, completed={}", executorService.getTaskCount(), completedTasks);
+                logger.warn("inserts per sec={}", executorService.getCompletedTaskCount() / executionTime);
+            }
 
             try {
                 Thread.sleep(5000);

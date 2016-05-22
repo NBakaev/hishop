@@ -41,7 +41,7 @@ public class GoodRepositoryImplTest extends AbstractTestNGSpringContextTests {
 
         Good goodFromDb = mongoOperations.findOne(query, Good.class);
 
-        Assert.assertEquals(good, goodFromDb);
+        Assert.assertEquals(good.getId(), goodFromDb.getId());
     }
 
     @Test(dependsOnMethods = {"createGoodTest"})

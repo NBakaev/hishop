@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 public class Good extends BasicClassAbstract {
 
     @ApiModelProperty("Price of good as BigDecimal")
-    private BigDecimal price;
+    private BigDecimal price = new BigDecimal(BigInteger.ZERO);
 
     @ApiModelProperty("Price of good that we bought. Used to calculate marginality BigDecimal")
     private BigDecimal purchasePrice;
