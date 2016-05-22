@@ -44,10 +44,15 @@ public class Good extends BasicClassAbstract {
     @ApiModelProperty("Supplier id")
     private String companySupplierId;
 
-    @ApiModelProperty("")
+    @ApiModelProperty("URL of Main image of this good")
     private String mainAvatarUrl;
 
+    @ApiModelProperty("Additional URLs of images for this good")
     private List<String> avatarUrl;
+
+    @ApiModelProperty("List of labels for good")
+    private List<Label> labels = new ArrayList<>();
+
 
     public Good() {
     }
@@ -76,7 +81,8 @@ public class Good extends BasicClassAbstract {
             return false;
         if (mainAvatarUrl != null ? !mainAvatarUrl.equals(good.mainAvatarUrl) : good.mainAvatarUrl != null)
             return false;
-        return avatarUrl != null ? avatarUrl.equals(good.avatarUrl) : good.avatarUrl == null;
+        if (avatarUrl != null ? !avatarUrl.equals(good.avatarUrl) : good.avatarUrl != null) return false;
+        return labels != null ? labels.equals(good.labels) : good.labels == null;
 
     }
 
@@ -92,7 +98,17 @@ public class Good extends BasicClassAbstract {
         result = 31 * result + (companySupplierId != null ? companySupplierId.hashCode() : 0);
         result = 31 * result + (mainAvatarUrl != null ? mainAvatarUrl.hashCode() : 0);
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
+        result = 31 * result + (labels != null ? labels.hashCode() : 0);
         return result;
+    }
+
+    public List<Label> getLabels() {
+
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
     }
 
     public List<String> getAvatarUrl() {
