@@ -50,6 +50,7 @@ public class PurchaseControllerImplTest extends AbstractTestNGSpringContextTests
 
         Good good = new Good();
         good.setName("Apple iPhone 5");
+        good.setNumberAvailable(5);
         goodRepository.createGood(good);
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
