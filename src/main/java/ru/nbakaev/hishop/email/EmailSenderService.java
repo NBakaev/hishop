@@ -5,17 +5,14 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.context.FieldValueResolver;
 import com.github.jknack.handlebars.context.MapValueResolver;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import ru.nbakaev.hishop.purchaseorder.PurchaseOrder;
 import ru.nbakaev.hishop.users.UserAccount;
 import ru.nbakaev.hishop.users.UserAccountRepository;
-import ru.nbakaev.hishop.purchaseorder.PurchaseOrder;
 
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,11 +31,13 @@ public class EmailSenderService {
     private final UserAccountRepository userAccountRepository;
     private Template userSendTemplate;
     private Template orderSendTemplate;
+    private final EmailProvider emailProvider;
 
     @Autowired
-    public EmailSenderService(UserAccountRepository userAccountRepository, @Qualifier("plainTextEmailSender") WebResource plainTextEmailSender) {
+    public EmailSenderService(UserAccountRepository userAccountRepository, @Qualifier("plainTextEmailSender") WebResource plainTextEmailSender, EmailProvider emailProvider) {
         this.userAccountRepository = userAccountRepository;
         this.plainTextEmailSender = plainTextEmailSender;
+        this.emailProvider = emailProvider;
         try {
             userSendTemplate = handlebars.compile("templates/createUserAccountEmail");
             orderSendTemplate = handlebars.compile("templates/purchaseEmail");
@@ -57,27 +56,10 @@ public class EmailSenderService {
         Map<String, Object> map = new HashMap<>();
         map.put("userName", userAccount.getUsername());
 
-        Context context = Context
-                .newBuilder(map)
-                .resolver(MapValueResolver.INSTANCE, FieldValueResolver.INSTANCE)
-                .build();
+        String emailText = processTemplateWithContext(userSendTemplate, createContextFromMap(map));
+        Email email = new Email("test@nbakaev.ru", userAccount.getUsername(), emailText, "Добро пожаловать в hiShop");
 
-        MultivaluedMapImpl formData = new MultivaluedMapImpl();
-
-        String emailText = null;
-        try {
-            emailText = userSendTemplate.apply(context);
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
-        formData.add("from", "test@nbakaev.ru");
-        formData.add("to", userAccount.getUsername());
-        formData.add("subject", "Добро пожаловать в hiShop");
-        formData.add("text", emailText);
-
-        ClientResponse c = plainTextEmailSender.type(MediaType.APPLICATION_FORM_URLENCODED).
-                post(ClientResponse.class, formData);
+        emailProvider.sendEmail(email);
     }
 
     /**
@@ -92,27 +74,30 @@ public class EmailSenderService {
         map.put("goods", purchaseOrder.getGoodList());
         map.put("user", userAccount);
 
+        String emailText = processTemplateWithContext(orderSendTemplate, createContextFromMap(map));
+        Email email = new Email("test@nbakaev.ru", userAccount.getUsername(), emailText, "Новая покупка в hiShop");
+
+        emailProvider.sendEmail(email);
+    }
+
+
+    private Context createContextFromMap(Map<String, Object> map) {
         Context context = Context
                 .newBuilder(map)
                 .resolver(MapValueResolver.INSTANCE, FieldValueResolver.INSTANCE)
                 .build();
+        return context;
+    }
 
-        MultivaluedMapImpl formData = new MultivaluedMapImpl();
-
+    private String processTemplateWithContext(Template template, Context context) {
         String emailText = null;
         try {
-            emailText = orderSendTemplate.apply(context);
+            emailText = template.apply(context);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
 
-        formData.add("from", "test@nbakaev.ru");
-        formData.add("to", userAccount.getUsername());
-        formData.add("subject", "Новая покупка в hiShop");
-        formData.add("text", emailText);
-
-        ClientResponse c = plainTextEmailSender.type(MediaType.APPLICATION_FORM_URLENCODED).
-                post(ClientResponse.class, formData);
+        return emailText;
     }
 
 }
