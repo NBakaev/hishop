@@ -51,6 +51,7 @@ public class GoodControllerTest extends AbstractTestNGSpringContextTests {
     public void testAddGood() throws Exception {
         Good good = new Good();
         good.setName("Android");
+        good.setNumberAvailable(10);
 
         testGoodId = good.getId();
 

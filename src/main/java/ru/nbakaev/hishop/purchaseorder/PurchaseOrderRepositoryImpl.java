@@ -1,5 +1,7 @@
 package ru.nbakaev.hishop.purchaseorder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -8,9 +10,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import ru.nbakaev.hishop.configs.InvalidRequestException;
 import ru.nbakaev.hishop.email.EmailSenderService;
 import ru.nbakaev.hishop.entity.CreatedInfo;
 import ru.nbakaev.hishop.good.Good;
+import ru.nbakaev.hishop.good.GoodRepository;
 import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatusRepository;
 import ru.nbakaev.hishop.settings.ShopSettingsRepository;
 import ru.nbakaev.hishop.users.CurrentUser;
@@ -18,6 +22,7 @@ import ru.nbakaev.hishop.users.CurrentUser;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/10/2016.
@@ -37,10 +42,13 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
     private final CurrentUser currentUser;
     private final PurchaseStatusRepository purchaseStatusRepository;
     private final ShopSettingsRepository shopSettingsRepository;
+    private final GoodRepository goodRepository;
+
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     public PurchaseOrderRepositoryImpl(final MongoOperations mongoTemplate, final RestTemplate restTemplate, final EmailSenderService emailSenderService, final CurrentUser currentUser,
-                                       final PurchaseStatusRepository purchaseStatusRepository, final ShopSettingsRepository shopSettingsRepository,
+                                       final PurchaseStatusRepository purchaseStatusRepository, final ShopSettingsRepository shopSettingsRepository, final GoodRepository goodRepository,
                                        @Value("${google.analytics.tid}") String googleAnalyticsId,
                                        @Value("${google.analytics.ta}") String googleAnalyticsTA) {
         this.restTemplate = restTemplate;
@@ -51,6 +59,7 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
         this.shopSettingsRepository = shopSettingsRepository;
         this.baseUrl = googleAnalyticsId;
         this.googleAnalyticsTA = googleAnalyticsTA;
+        this.goodRepository = goodRepository;
     }
 
     // this is default google analytics url
@@ -82,10 +91,34 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
         // this is trick which can be replaced with AOP
         purchaseOrder.setCreatedInfo(new CreatedInfo(new Date(), currentUser.getCurrentUser().getId()));
 
+        // do not allow user to override prices etc...
+        List<GoodWithNumber> goodsFromDatabase = purchaseOrder.getGoodList().stream().map(x -> {
+            x.setGood(goodRepository.getGoodById(x.getGood().getId()));
+            return x;
+        }).collect(Collectors.toList());
+        purchaseOrder.setGoodList(goodsFromDatabase);
+
+
         // sum price of every good
-        BigDecimal goodPriceSum = purchaseOrder.getGoodList().stream().map(Good::getPrice)
+        BigDecimal goodPriceSum = goodsFromDatabase.stream().map(x -> x.getGood().getPrice())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         purchaseOrder.setPrice(goodPriceSum);
+
+        // check that we have such number of goods
+        goodsFromDatabase.stream().forEach(x -> {
+            if (x.getGood().getNumberAvailable() < x.getNumber()) {
+                throw new InvalidRequestException("No such number of goods available now. Please try later");
+            }
+        });
+
+        // decrease available number of goods
+        // and increase sold
+        goodsFromDatabase.stream().forEach(x -> {
+            Good good = x.getGood();
+            good.setNumberAvailable(x.getGood().getNumberAvailable() - x.getNumber());
+            good.setNumberSold(x.getGood().getNumberSold() + x.getNumber());
+            goodRepository.updateGood(good);
+        });
 
         purchaseOrder.setPaid(false);
         purchaseOrder.setRefunded(false);
@@ -106,9 +139,11 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
         try {
             emailSenderService.sendOrderEmail(purchaseOrder);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        logger.info("New order: {}", purchaseOrder.toString());
 
         return purchaseOrder;
     }
