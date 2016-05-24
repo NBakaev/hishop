@@ -13,6 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.nbakaev.hishop.StartApplication;
+import ru.nbakaev.hishop.purchaseorder.GoodWithNumber;
 import ru.nbakaev.hishop.purchaseorder.PurchaseOrder;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
@@ -52,7 +53,8 @@ public class PurchaseControllerImplTest extends AbstractTestNGSpringContextTests
         goodRepository.createGood(good);
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
-        purchaseOrder.getGoodList().add(good);
+        GoodWithNumber goodWithNumber = new GoodWithNumber(good, 2);
+        purchaseOrder.getGoodList().add(goodWithNumber);
 
         ObjectMapper objectMapper = new ObjectMapper();
 

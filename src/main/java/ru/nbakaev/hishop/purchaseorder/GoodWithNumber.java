@@ -11,6 +11,14 @@ public class GoodWithNumber {
     private Good good;
     private int number;
 
+    public GoodWithNumber() {
+    }
+
+    public GoodWithNumber(Good good, int number) {
+        this.good = good;
+        this.number = number;
+    }
+
     public Good getGood() {
         return good;
     }
