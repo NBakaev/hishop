@@ -1,11 +1,11 @@
 package ru.nbakaev.hishop.email;
 
-import com.github.jknack.handlebars.*;
+import com.github.jknack.handlebars.Context;
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.context.FieldValueResolver;
 import com.github.jknack.handlebars.context.MapValueResolver;
-import com.sun.jersey.api.client.WebResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.nbakaev.hishop.purchaseorder.PurchaseOrder;
 import ru.nbakaev.hishop.users.UserAccount;
@@ -25,7 +25,6 @@ import java.util.Map;
 @Service
 public class EmailSenderService {
 
-    private WebResource plainTextEmailSender;
     private final Handlebars handlebars;
     private final UserAccountRepository userAccountRepository;
     private Template userSendTemplate;
@@ -33,13 +32,12 @@ public class EmailSenderService {
     private final EmailProvider emailProvider;
 
     @Autowired
-    public EmailSenderService(UserAccountRepository userAccountRepository, @Qualifier("plainTextEmailSender") WebResource plainTextEmailSender, EmailProvider emailProvider) {
+    public EmailSenderService(UserAccountRepository userAccountRepository, EmailProvider emailProvider) {
 
         this.handlebars = new Handlebars();
         initHandlebars(handlebars);
 
         this.userAccountRepository = userAccountRepository;
-        this.plainTextEmailSender = plainTextEmailSender;
         this.emailProvider = emailProvider;
         try {
             userSendTemplate = handlebars.compile("templates/createUserAccountEmail");
@@ -50,6 +48,9 @@ public class EmailSenderService {
     }
 
     private void initHandlebars(Handlebars handlebars) {
+
+        // this is helper to print BigDecimal in template
+        // for example {{ print_price replace_with_some_variable }}
         handlebars.registerHelper("print_price", (context, options) -> {
 
             if (context instanceof BigDecimal) {
@@ -62,14 +63,14 @@ public class EmailSenderService {
     }
 
     /**
-     * Send email to new registered userAccount
+     * Send email to new registered user
      *
      * @param userAccount
      */
     public void sendCreatingEmail(UserAccount userAccount) {
 
         Map<String, Object> map = new HashMap<>();
-        map.put("userName", userAccount.getUsername());
+        map.put("user", userAccount);
 
         String emailText = processTemplateWithContext(userSendTemplate, createContextFromMap(map));
         Email email = new Email("test@nbakaev.ru", userAccount.getUsername(), emailText, "Добро пожаловать в hiShop");
