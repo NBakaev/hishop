@@ -1,7 +1,6 @@
 package ru.nbakaev.hishop.purchaseorder;
 
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.data.mongodb.core.mapping.Document;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
 import ru.nbakaev.hishop.purchaseorder.status.PurchaseStatus;
 
@@ -10,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ * getCreatedInfo().getCreatedById() contain buyer
+ *
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/10/2016.
  * All Rights Reserved
  */
-
-@Document
 public class PurchaseOrder extends BasicClassAbstract {
 
     @ApiModelProperty("Price of good")
@@ -31,6 +31,7 @@ public class PurchaseOrder extends BasicClassAbstract {
 
     @ApiModelProperty("Purchase status")
     private PurchaseStatus purchaseStatus = new PurchaseStatus();
+
 
     public PurchaseStatus getPurchaseStatus() {
         return purchaseStatus;

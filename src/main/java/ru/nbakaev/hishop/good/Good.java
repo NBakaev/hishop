@@ -3,7 +3,6 @@ package ru.nbakaev.hishop.good;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.mongodb.core.index.TextIndexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 import ru.nbakaev.hishop.entity.BasicClassAbstract;
 
 import java.math.BigDecimal;
@@ -15,8 +14,6 @@ import java.util.List;
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/10/2016.
  * All Rights Reserved
  */
-
-@Document
 @ApiModel("Good")
 public class Good extends BasicClassAbstract {
 
