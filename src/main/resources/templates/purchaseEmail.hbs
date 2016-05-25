@@ -6,7 +6,7 @@
 <body>
 <table cellpadding="0" cellspacing="0" border="0" width="100%" align="center"
        style="border:none;border-collapse:collapse; background: #e8e8e8;font-family:Arial,sans-serif;"
-       bgcolor="#e8e8e8">
+       bgcolor="rgba(232, 232, 232, 0.88)">
     <tr>
         <td width="50%">
         </td>
@@ -14,20 +14,20 @@
             <br/>
             <!-- #1 -->
             <table cellpadding="0" cellspacing="0" border="0" width="600" align="center"
-                   style="border: 1px solid #dedede;border-collapse:collapse; background: #ffffff;" bgcolor="#ffffff">
+                   style="border: 1px solid #dedede;border-collapse:collapse; background: #ffffff;" bgcolor="#ffffff" >
                 <tr>
                     <td style="border:none;">
-                        <br>
+                        <!--<br>-->
                         <!-- #header-end-wrapper -->
                         <!-- #HEADER -->
                         <!-- CONTENT -->
-                        <table width="590" class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center"
-                               bgcolor="#ffffff">
+                        <table width="590" class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 0px;
+    width: 100%;">
                             <tr>
                                 <td height="37" valign="middle"
-                                    style="height: 37px; border-bottom-color: #d6d6d6; border-bottom-width: 1px; border-bottom-style: solid; vertical-align: middle;background:#afe1f6;font-family:tahoma,arial,sans-serif;">
+                                    style="height: 37px; border-bottom-color: #d6d6d6; border-bottom-width: 1px; border-bottom-style: solid; vertical-align: middle;background:rgb(65, 132, 243);;font-family:tahoma,arial,sans-serif;">
                                     <span align="center"
-                                          style="font-weight: bold; font-size: 14px; margin: 0; padding: 0; color: #243a5a; text-align: center;">
+                                          style="font-weight: bold; font-size: 14px; margin: 0; padding: 0; color: white; text-align: center;">
                                         <center>Ваш заказ будет скоро обработан</center></span>
                                 </td>
                             </tr>
@@ -67,9 +67,14 @@
                                                 style="padding: 5px 10px 6px; text-align:left; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
                                                 align="left">Артикул
                                             </td>
-                                            <td width="20%"
+                                            <td width="10%"
                                                 style="padding: 5px 10px 6px; text-align:right; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
                                                 align="right">Количество
+                                            </td>
+
+                                            <td width="10%"
+                                                style="padding: 5px 10px 6px; text-align:right; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                align="right">Цена
                                             </td>
                                         </tr>
                                     </table>
@@ -94,8 +99,36 @@
                                                     align="right">
                                                     {{ number}}
                                                 </td>
+
+                                                <td width="20%"
+                                                    style="padding: 5px 10px 6px;text-align:right; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                    align="right">
+                                                    {{ print_price good.price}}
+                                                </td>
                                             </tr>
                                         {{/each}}
+
+                                        <tr>
+                                            <td width="55%"
+                                                style="padding: 5px 10px 6px;text-align:left; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                align="left">
+                                            </td>
+                                            <td width="25%"
+                                                style="padding: 5px 10px 6px;text-align:left; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                align="left">
+                                            </td>
+                                            <td width="20%"
+                                                style="padding: 5px 10px 6px;text-align:right; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                align="right">
+                                            </td>
+
+                                            <td width="20%"
+                                                style="padding: 5px 10px 6px;text-align:right; font-size: 13px;  color: #000000; line-height:16px; font-family: Tahoma, Arial, sans-serif;"
+                                                align="right">
+                                                {{ print_price order.price}}
+                                            </td>
+                                        </tr>
+
                                     </table>
                                 </td>
                             </tr>

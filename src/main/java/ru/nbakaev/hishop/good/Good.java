@@ -23,9 +23,6 @@ public class Good extends BasicClassAbstract {
     @ApiModelProperty("Price of good as BigDecimal")
     private BigDecimal price = new BigDecimal(BigInteger.ZERO);
 
-    @ApiModelProperty("Price of good that we bought. Used to calculate marginality BigDecimal")
-    private BigDecimal purchasePrice;
-
     @ApiModelProperty("Number that can be bought")
     private int numberAvailable;
 
@@ -62,6 +59,11 @@ public class Good extends BasicClassAbstract {
         super(name);
     }
 
+    public List<Label> getLabels() {
+
+        return labels;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,8 +75,6 @@ public class Good extends BasicClassAbstract {
         if (numberSold != good.numberSold) return false;
         if (showOnIndexPage != good.showOnIndexPage) return false;
         if (price != null ? !price.equals(good.price) : good.price != null) return false;
-        if (purchasePrice != null ? !purchasePrice.equals(good.purchasePrice) : good.purchasePrice != null)
-            return false;
         if (description != null ? !description.equals(good.description) : good.description != null) return false;
         if (categoriesIds != null ? !categoriesIds.equals(good.categoriesIds) : good.categoriesIds != null)
             return false;
@@ -90,7 +90,6 @@ public class Good extends BasicClassAbstract {
     @Override
     public int hashCode() {
         int result = price != null ? price.hashCode() : 0;
-        result = 31 * result + (purchasePrice != null ? purchasePrice.hashCode() : 0);
         result = 31 * result + numberAvailable;
         result = 31 * result + numberSold;
         result = 31 * result + (description != null ? description.hashCode() : 0);
@@ -101,11 +100,6 @@ public class Good extends BasicClassAbstract {
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         result = 31 * result + (labels != null ? labels.hashCode() : 0);
         return result;
-    }
-
-    public List<Label> getLabels() {
-
-        return labels;
     }
 
     public void setLabels(List<Label> labels) {
@@ -136,13 +130,6 @@ public class Good extends BasicClassAbstract {
         this.companySupplierId = companySupplierId;
     }
 
-    public BigDecimal getPurchasePrice() {
-        return purchasePrice;
-    }
-
-    public void setPurchasePrice(BigDecimal purchasePrice) {
-        this.purchasePrice = purchasePrice;
-    }
 
     public int getNumberAvailable() {
         return numberAvailable;

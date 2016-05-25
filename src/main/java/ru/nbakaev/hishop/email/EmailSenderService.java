@@ -1,8 +1,6 @@
 package ru.nbakaev.hishop.email;
 
-import com.github.jknack.handlebars.Context;
-import com.github.jknack.handlebars.Handlebars;
-import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.*;
 import com.github.jknack.handlebars.context.FieldValueResolver;
 import com.github.jknack.handlebars.context.MapValueResolver;
 import com.sun.jersey.api.client.WebResource;
@@ -14,6 +12,7 @@ import ru.nbakaev.hishop.users.UserAccount;
 import ru.nbakaev.hishop.users.UserAccountRepository;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ import java.util.Map;
 public class EmailSenderService {
 
     private WebResource plainTextEmailSender;
-    private final Handlebars handlebars = new Handlebars();
+    private final Handlebars handlebars;
     private final UserAccountRepository userAccountRepository;
     private Template userSendTemplate;
     private Template orderSendTemplate;
@@ -35,6 +34,10 @@ public class EmailSenderService {
 
     @Autowired
     public EmailSenderService(UserAccountRepository userAccountRepository, @Qualifier("plainTextEmailSender") WebResource plainTextEmailSender, EmailProvider emailProvider) {
+
+        this.handlebars = new Handlebars();
+        initHandlebars(handlebars);
+
         this.userAccountRepository = userAccountRepository;
         this.plainTextEmailSender = plainTextEmailSender;
         this.emailProvider = emailProvider;
@@ -44,6 +47,18 @@ public class EmailSenderService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void initHandlebars(Handlebars handlebars) {
+        handlebars.registerHelper("print_price", (context, options) -> {
+
+            if (context instanceof BigDecimal) {
+                BigDecimal context2 = (BigDecimal) context;
+                return Double.toString(context2.doubleValue());
+            }
+
+            return context.toString();
+        });
     }
 
     /**
