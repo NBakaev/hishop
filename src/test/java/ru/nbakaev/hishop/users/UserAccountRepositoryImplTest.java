@@ -41,6 +41,7 @@ public class UserAccountRepositoryImplTest extends AbstractTestNGSpringContextTe
         account = new UserAccount();
         account.setUsername("test@nbakaev.ru");
         account.getCustomer().setFirstname("Nikita");
+        account.getCustomer().setLastname("Bakaev");
         account.setPassword(userPassword);
     }
 

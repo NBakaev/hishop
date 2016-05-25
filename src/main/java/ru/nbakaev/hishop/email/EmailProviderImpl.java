@@ -35,6 +35,7 @@ public class EmailProviderImpl implements EmailProvider {
             formData.add("to", email.getTo());
             formData.add("subject", email.getSubject());
             formData.add("text", email.getBody());
+            formData.add("html", email.getBody());
 
             ClientResponse c = plainTextEmailSender.type(MediaType.APPLICATION_FORM_URLENCODED).
                     post(ClientResponse.class, formData);
