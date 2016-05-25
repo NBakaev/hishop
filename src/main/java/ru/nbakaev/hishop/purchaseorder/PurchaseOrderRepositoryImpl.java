@@ -100,7 +100,7 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
 
 
         // sum price of every good
-        BigDecimal goodPriceSum = goodsFromDatabase.stream().map(x -> x.getGood().getPrice())
+        BigDecimal goodPriceSum = goodsFromDatabase.stream().map(x -> x.getGood().getPrice().multiply(new BigDecimal(Integer.toString(x.getNumber()))))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         purchaseOrder.setPrice(goodPriceSum);
 
