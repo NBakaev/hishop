@@ -27,6 +27,7 @@ public class MongoProductionConfigurationTest extends AbstractTestNGSpringContex
     public void testMongoProductionConfigurationTest() {
         CommandResult result = mongoTemplate.executeCommand("{ buildInfo: 1 }");
 
+        Assert.assertNotNull(mongoTemplate);
         Assert.assertNotNull(result);
         Assert.assertNotNull(result.getString("version"));
     }
