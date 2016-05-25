@@ -73,6 +73,7 @@ public class EmailSenderService {
         Map<String, Object> map = new HashMap<>();
         map.put("goods", purchaseOrder.getGoodList());
         map.put("user", userAccount);
+        map.put("order", purchaseOrder);
 
         String emailText = processTemplateWithContext(orderSendTemplate, createContextFromMap(map));
         Email email = new Email("test@nbakaev.ru", userAccount.getUsername(), emailText, "Новая покупка в hiShop");
