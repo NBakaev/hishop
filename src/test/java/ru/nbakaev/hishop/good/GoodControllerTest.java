@@ -15,6 +15,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.nbakaev.hishop.StartApplication;
 
+import java.math.BigDecimal;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -52,6 +54,7 @@ public class GoodControllerTest extends AbstractTestNGSpringContextTests {
         Good good = new Good();
         good.setName("Android");
         good.setNumberAvailable(10);
+        good.setPrice(new BigDecimal("45000"));
 
         testGoodId = good.getId();
 

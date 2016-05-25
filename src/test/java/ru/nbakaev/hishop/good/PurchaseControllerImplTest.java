@@ -16,6 +16,8 @@ import ru.nbakaev.hishop.StartApplication;
 import ru.nbakaev.hishop.purchaseorder.GoodWithNumber;
 import ru.nbakaev.hishop.purchaseorder.PurchaseOrder;
 
+import java.math.BigDecimal;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -51,6 +53,8 @@ public class PurchaseControllerImplTest extends AbstractTestNGSpringContextTests
         Good good = new Good();
         good.setName("Apple iPhone 5");
         good.setNumberAvailable(5);
+        good.setPrice(new BigDecimal("45000"));
+
         goodRepository.createGood(good);
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
