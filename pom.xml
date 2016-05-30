@@ -217,6 +217,11 @@
             <artifactId>poi-ooxml</artifactId>
             <version>${org.apache.poi}</version>
         </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.10.69</version>
+        </dependency>
 
     </dependencies>
 

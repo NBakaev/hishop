@@ -35,6 +35,8 @@ java -jar target/ru.nbakaev.hishop.jar \
     --spring_data_mongodb_uri="mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
     --mailgun_api_key="key-b305ee369ffb69e8b559" \
     --mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages" \
+    --aws_accessKey=AKIAIIF56L35S7A \
+    --aws_secretKey=Ez5JO4FjkRlyiki8c3DMTjzl \
     --spring.output.ansi.enabled=ALWAYS
 ```
 
@@ -44,6 +46,8 @@ Example above use command-line arguments to java program. You can use the same t
 export spring_data_mongodb_uri="mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop"
 export mailgun_api_key="key-b305ee369ffb69e8b559"
 export mailgun_url="https://api.mailgun.net/v3/sandbox21473e1b5f33c2e779eb7a46.mailgun.org/messages"
+export aws_accessKey="AKIAIIF56L35S7A"
+export aws_secretKey="Ez5JO4FjkRlyiki8c3DMTjzl"
 export spring.output.ansi.enabled=ALWAYS
 
 java -jar target/ru.nbakaev.hishop.jar
@@ -58,6 +62,8 @@ docker run -d -p 5555:5555 \
     -e "spring_data_mongodb_uri=mongodb://H7sXKfNiJOoBPByF:X5hQ8Kx9KQZ9165.mongolab.com:39165/hishop" \
     -e "mailgun_api_key=key-b305ee369ffb69e8b559" \
     -e "mailgun_url=https://api.mailgun.net/v3/sandbox21473e1b5f3344c2950ac2e779eb7a46.mailgun.org/messages" \
+    -e "aws_accessKey=AKIAIIF56L35S7A" \
+    -e "aws_secretKey=Ez5JO4FjkRlyiki8c3DMTjzl" \
     -e "spring.output.ansi.enabled=ALWAYS" \
     --name hishop1 nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392
 ```
