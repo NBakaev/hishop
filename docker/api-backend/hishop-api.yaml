@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
       - name: hishop-api
-        image: nbakaev/hishop
+        image: nbakaev/hishop-api-backend
         imagePullPolicy: Always
         restartPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 5555
         dnsPolicy: ClusterFirst
