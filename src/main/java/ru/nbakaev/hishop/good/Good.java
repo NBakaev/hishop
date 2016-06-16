@@ -33,17 +33,11 @@ public class Good extends BasicClassAbstract {
     @ApiModelProperty("Ids of categories")
     private List<String> categoriesIds = new ArrayList<>();
 
-    @ApiModelProperty("true to show on / page")
-    private boolean showOnIndexPage = false;
-
-    @ApiModelProperty("Supplier id")
-    private String companySupplierId;
-
     @ApiModelProperty("URL of Main image of this good")
     private String mainAvatarUrl;
 
     @ApiModelProperty("Additional URLs of images for this good")
-    private List<String> avatarUrl;
+    private List<String> avatarUrl = new ArrayList<>();
 
     @ApiModelProperty("List of labels for good")
     private List<Label> labels = new ArrayList<>();
@@ -70,12 +64,9 @@ public class Good extends BasicClassAbstract {
 
         if (numberAvailable != good.numberAvailable) return false;
         if (numberSold != good.numberSold) return false;
-        if (showOnIndexPage != good.showOnIndexPage) return false;
         if (price != null ? !price.equals(good.price) : good.price != null) return false;
         if (description != null ? !description.equals(good.description) : good.description != null) return false;
         if (categoriesIds != null ? !categoriesIds.equals(good.categoriesIds) : good.categoriesIds != null)
-            return false;
-        if (companySupplierId != null ? !companySupplierId.equals(good.companySupplierId) : good.companySupplierId != null)
             return false;
         if (mainAvatarUrl != null ? !mainAvatarUrl.equals(good.mainAvatarUrl) : good.mainAvatarUrl != null)
             return false;
@@ -91,8 +82,6 @@ public class Good extends BasicClassAbstract {
         result = 31 * result + numberSold;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (categoriesIds != null ? categoriesIds.hashCode() : 0);
-        result = 31 * result + (showOnIndexPage ? 1 : 0);
-        result = 31 * result + (companySupplierId != null ? companySupplierId.hashCode() : 0);
         result = 31 * result + (mainAvatarUrl != null ? mainAvatarUrl.hashCode() : 0);
         result = 31 * result + (avatarUrl != null ? avatarUrl.hashCode() : 0);
         result = 31 * result + (labels != null ? labels.hashCode() : 0);
@@ -118,15 +107,6 @@ public class Good extends BasicClassAbstract {
     public void setMainAvatarUrl(String mainAvatarUrl) {
         this.mainAvatarUrl = mainAvatarUrl;
     }
-
-    public String getCompanySupplierId() {
-        return companySupplierId;
-    }
-
-    public void setCompanySupplierId(String companySupplierId) {
-        this.companySupplierId = companySupplierId;
-    }
-
 
     public int getNumberAvailable() {
         return numberAvailable;
@@ -160,13 +140,6 @@ public class Good extends BasicClassAbstract {
         this.categoriesIds = categoriesIds;
     }
 
-    public boolean isShowOnIndexPage() {
-        return showOnIndexPage;
-    }
-
-    public void setShowOnIndexPage(boolean showOnIndexPage) {
-        this.showOnIndexPage = showOnIndexPage;
-    }
 
     public BigDecimal getPrice() {
         return price;

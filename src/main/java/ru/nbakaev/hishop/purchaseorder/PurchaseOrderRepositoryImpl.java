@@ -158,6 +158,15 @@ public class PurchaseOrderRepositoryImpl implements PurchaseOrderRepository {
     }
 
     @Override
+    public List<PurchaseOrder> getPurchaseOrderForUser(String userId) {
+        Criteria criteria = new Criteria();
+        criteria.and("createdInfo.createdById").is(userId);
+        Query query = new Query(criteria);
+
+        return mongoTemplate.find(query, PurchaseOrder.class);
+    }
+
+    @Override
     public PurchaseOrder updatePurchaseOrder(PurchaseOrder good) {
         mongoTemplate.save(good);
         return good;

@@ -10,6 +10,7 @@ public interface PurchaseOrderRepository {
     PurchaseOrder createNewPurchaseOrder(PurchaseOrder good);
 
     List<PurchaseOrder> getAllPurchaseOrder();
+    List<PurchaseOrder> getPurchaseOrderForUser(String userId);
 
     PurchaseOrder updatePurchaseOrder(PurchaseOrder good);
 

@@ -84,6 +84,10 @@ public class GoodRepositoryImpl implements GoodRepository {
         Criteria criteria = entityFilterService.getCriteriaFromAbstractFilter(goodEntityDto);
         Query query = entityFilterService.getQueryFromAbstractFilter(goodEntityDto, criteria);
 
+        if (goodEntityDto.getCategoriesIds() != null && goodEntityDto.getCategoriesIds().size() > 0){
+            criteria.and("categoriesIds").in(goodEntityDto.getCategoriesIds());
+        }
+
         GoodResultResponseDto result = new GoodResultResponseDto();
 
         result.setRelevantObjectsNumber(entityFilterService.countResultFromCriteria(goodEntityDto, criteria, Good.class, mongoTemplate));

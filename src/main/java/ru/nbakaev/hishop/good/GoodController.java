@@ -69,13 +69,6 @@ public class GoodController {
         goodRepository.deleteGoodById(id);
     }
 
-    @RequestMapping(value = "category/index", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    List<Good> getAllGoodsInIndexPage() {
-        return goodRepository.getAllGoodsOnIndexPage();
-    }
-
     @ApiOperation(value = "get goods by filter, including full-text search, price criteria and a lot of other")
     @RequestMapping(value = "filter", method = RequestMethod.POST)
     public
@@ -111,6 +104,13 @@ public class GoodController {
 
         ResponseEntity responseEntity = new ResponseEntity(goodExcelExportService.getGoodsExcel(goodEntityDto), headers, HttpStatus.OK);
         return responseEntity;
+    }
+
+    @RequestMapping(value = "details/{id}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    Good getGoodById(@PathVariable("id") String id) {
+        return goodRepository.getGoodById(id);
     }
 
 }

@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.nbakaev.hishop.auth.UserAccountRoles;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * Created by Nikita Bakaev, ya@nbakaev.ru on 1/10/2016.
  * All Rights Reserved
@@ -30,7 +28,7 @@ public class ShopSettingsController {
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public
     @ResponseBody
-    ShopSettings updatePurchaseOrder(@RequestBody ShopSettings shopSettings, HttpServletRequest request) {
+    ShopSettings updatePurchaseOrder(@RequestBody ShopSettings shopSettings) {
         shopSettingsRepository.updateShopSettings(shopSettings);
         return shopSettings;
     }
@@ -38,7 +36,7 @@ public class ShopSettingsController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public
     @ResponseBody
-    ShopSettings updatePurchaseOrder(HttpServletRequest request) {
+    ShopSettings updateShopSettings() {
         return shopSettingsRepository.getShopSettings();
     }
 

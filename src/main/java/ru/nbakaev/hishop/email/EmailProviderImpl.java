@@ -3,6 +3,8 @@ package ru.nbakaev.hishop.email;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.core.util.MultivaluedMapImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -24,21 +26,30 @@ public class EmailProviderImpl implements EmailProvider {
 
     private final ThreadPoolExecutor threadPoolExecutor = new ScheduledThreadPoolExecutor(15);
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Override
     public void sendEmail(Email email) {
 
         threadPoolExecutor.submit((Runnable) () -> {
 
-            MultivaluedMapImpl formData = new MultivaluedMapImpl();
+            try {
+                MultivaluedMapImpl formData = new MultivaluedMapImpl();
 
-            formData.add("from", email.getFrom());
-            formData.add("to", email.getTo());
-            formData.add("subject", email.getSubject());
-            formData.add("text", email.getBody());
-            formData.add("html", email.getBody());
+                formData.add("from", email.getFrom());
+                formData.add("to", email.getTo());
+                formData.add("subject", email.getSubject());
+                formData.add("text", email.getBody());
+                formData.add("html", email.getBody());
 
-            ClientResponse c = plainTextEmailSender.type(MediaType.APPLICATION_FORM_URLENCODED).
-                    post(ClientResponse.class, formData);
+                ClientResponse c = plainTextEmailSender.type(MediaType.APPLICATION_FORM_URLENCODED).
+                        post(ClientResponse.class, formData);
+                logger.info("message mailgun {}", c.toString());
+            } catch (Exception e) {
+                logger.warn("Error sending email to {} : ", email.getTo(), e);
+            }
+
+
         });
     }
 }
