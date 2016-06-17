@@ -1,0 +1,83 @@
+<md-content class="md-padding">
+    <div>
+        <fieldset class="standard">
+            <legend ng-click="showFilters = !showFilters" style="font-size: 1.1em;">
+                Фильтры</legend>
+            <div ng-show="showFilters">
+                <div class="col-md-4">
+                    <div flex-xs flex="50">
+                        <md-checkbox ng-model="filterDTO.sortDESCbyCreatedDate" aria-label="Checkbox 1"
+                                     ng-change="pageChanged()">
+                            Новые сначала
+                        </md-checkbox>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <md-input-container>
+                        <label>Поиск</label>
+                        <input ng-model="filterDTO.fullTextSearchRequest" ng-change="pageChanged()"
+                               ng-model-options="{ debounce: 300 }">
+                    </md-input-container>
+                </div>
+
+                <div class="col-md-4">
+                    <md-button ng-click="downloadFileExcel()">скачать в excel</md-button>
+                </div>
+
+                <div class="col-md-12"></div>
+
+                <div class="col-md-4">
+                    <md-input-container>
+                        <label>На страницу</label>
+                        <input ng-model="itemsPerPage" ng-change="pageChanged()"
+                               ng-model-options="{ debounce: 300 }">
+                    </md-input-container>
+                </div>
+                <hr>
+            </div>
+        </fieldset>
+    </div>
+</md-content>
+
+<md-content ng-repeat="category in allCategories">
+    <h3>{{category.name}}</h3> <br>
+
+<div layout-xs="column" layout="row">
+
+        <div dir-paginate="good in allGoods | itemsPerPage: itemsPerPage track by good.id"
+             current-page="currentPage"
+             total-items="allGoodsCount"
+        >
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch ng-class="{'no-availbale-number' : good.numberAvailable < 1}">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">
+                             <a href="/#/good/details/{{good.id}}">
+                            {{good.name || 'noName'}}
+                            </a>
+                         </span>
+                        <span class="md-subhead">{{good.price}}&nbsp;руб.</span>
+                    </md-card-title-text>
+                    <md-card-title-media style="padding: 5px;">
+                        <img ng-src="{{good.mainAvatarUrl}}" ng-if="good.mainAvatarUrl">
+                        <div class="md-media-lg card-media"></div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="addGoodToCart(good)" ng-if="good.numberAvailable > 1">В корзину</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+    <dir-pagination-controls
+            boundary-links="true"
+            on-page-change="pageChanged(newPageNumber)">
+    </dir-pagination-controls>
+</md-content>
+
+<style>
+    .no-availbale-number{
+        opacity: 0.4 !important;
+    }
+</style>

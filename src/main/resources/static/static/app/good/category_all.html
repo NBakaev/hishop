@@ -1,0 +1,43 @@
+<table class="table table-condensed table-stripped table-hover">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Дата
+        </th>
+
+        <th>
+            Название
+        </th>
+    </tr>
+
+    <tr ng-repeat="category in allCategories">
+        <td>
+            {{$index + 1}}
+        </td>
+
+        <td>
+            {{printDate(category.createdInfo.createdDate)}}
+        </td>
+
+        <td>
+            <!--<md-input-container class="md-block" flex-gt-sm>-->
+            <!--<label>&nbsp;</label>-->
+                <!--<input ng-model="category.name" ng-change="updateCategory(category)" ng-model-options="{ debounce: 300 }">-->
+            <!--</md-input-container>-->
+            <input ng-model="category.name" ng-change="updateCategory(category)" ng-model-options="{ debounce: 300 }">
+        </td>
+    </tr>
+</table>
+
+<div style="position: fixed;  bottom: 4px;  right: 13px; z-index: 999999999999999;"
+     tooltip-placement="left" tooltip="Создать"
+     tooltip-append-to-body="true"
+     ng-click="createNewCategory()"
+>
+
+    <md-button class="md-fab md-primary" aria-label="Eat cake">
+        <md-icon md-svg-src="assets/ic_add_black_24px.svg"></md-icon>
+    </md-button>
+</div>

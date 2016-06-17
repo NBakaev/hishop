@@ -1,0 +1,142 @@
+<div class="pull-left">
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{good.name}}</h2> <br>
+
+            <span ng-if="good.mainAvatarUrl">
+                <img src="{{good.mainAvatarUrl}}" class="img img-responsive">
+            </span>
+
+            <span ng-if="good.avatarUrl && good.avatarUrl.length > 0">
+                <span ng-repeat="img in good.avatarUrl">
+                    <img src="{{img}}" class="img-responsive">
+                </span>
+            </span>
+
+        </div>
+        <div class="col-md-6" style="padding-top: 55px;">
+
+            <small> {{good.price}} руб</small>
+
+            <br>
+            <md-button ng-click="addGoodToCart(good)" class="md-raised md-primary" ng-if="good.numberAvailable >= 1">В корзину</md-button>
+            <md-button ng-click="addGoodToCart(good)" class="md-raised md-primary" ng-if="good.numberAvailable < 1">товара нет в наличии</md-button>
+
+            <br><br>
+            Дата создания : {{printDate(good.createdInfo.createdDate)}} <br>
+            Доступно : {{good.numberAvailable}} шт. <br>
+
+            <span ng-if="good.description">
+                Описание : {{good.description}} <br>
+            </span>
+
+        </div>
+    </div>
+</div>
+
+<div ng-if="hasRole('ROLE_ADMIN')">
+    <h3> Редактирование </h3>
+
+    Имя:
+    <input ng-model="good.name" ng-change="updateGood(good)" ng-model-options="{ debounce: 300 }">
+    <br>
+
+    Цена:
+    <input ng-model="good.price" type="number" ng-change="updateGood(good)" ng-model-options="{ debounce: 300 }">
+    <br>
+
+    Описание:
+    <input ng-model="good.description" ng-change="updateGood(good)" ng-model-options="{ debounce: 300 }">
+    <br>
+
+    Доступно:
+    <input ng-model="good.numberAvailable" type="number" ng-change="updateGood(good)"
+           ng-model-options="{ debounce: 300 }">
+    <br>
+
+    <div class="panel-body text-center">
+        <div class="row" style="padding-top: 10px;">
+            <div class="" ng-class="" style="padding-left: 20px; padding-right: 30px;">
+                <div ng-show="dropSupported" class="drop-box" ng-class="{'no-objects-color': ngModel.length ===  0}"
+                     ng-file-drop="onFileSelect($files)"
+                     ng-file-drop-available="dropSupported=true"
+                     ng-file-drag-over-class="dragOverClass($event)"
+                     ng-file-drag-over-delay="100">
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="row nopadding">
+                                <div class="col-md-10 nopadding">
+                                    {{'перетащите файлы сюда для загрузки'}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-file-drop-available="dropSupported=true"
+                     ng-show="!dropSupported">HTML5 Drop File is not supported!
+                </div>
+            </div>
+        </div>
+
+        <section class="panel panel-default" ng-show="selectedFiles != null && !uploadedAll">
+            <div class="panel-heading">
+                Прогресс загрузки
+            </div>
+            <div class="panel-body text-center">
+                <div>
+                    <div class="err" ng-show="errorMsg != null">{{errorMsg}}</div>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                        <tr>
+                            <td>Номер</td>
+                            <td>Название</td>
+                            <td>Размер</td>
+                            <td>Тип</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="sel-file" ng-repeat="f in selectedFiles"
+                            ng-class="{ success: progress[$index] === 100 }">
+
+                            <img ng-show="dataUrls[$index]" ng-src="{{dataUrls[$index]}}">
+                            <button class="button" ng-click="start($index)"
+                                    ng-show="progress[$index] < 0">Start
+                            </button>
+                            <span class="progress" ng-show="progress[$index] >= 0"></span>
+                            <button class="button" ng-click="abort($index)"
+                                    ng-show="hasUploader($index) && progress[$index] < 100">Abort
+                            </button>
+
+                            <td> {{($index + 1) + '.'}} {{progress[$index]}}%</td>
+                            <td>{{f.name}}</td>
+                            <td>{{f.size}}</td>
+                            <td>{{f.type}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+    <h4>Категоии</h4>
+
+    <md-chips class="custom-chips" ng-model="ctrl.vegObjs" readonly="ctrl.readonly"
+              md-transform-chip="ctrl.newVeg($chip)">
+        <md-chip-template>
+        <span>
+          <strong>[{{$index}}] {{$chip.name}}</strong>
+          <em>({{$chip.type}})</em>
+        </span>
+        </md-chip-template>
+        <button md-chip-remove class="md-primary vegetablechip">
+            <md-icon md-svg-icon="md-close"></md-icon>
+        </button>
+    </md-chips>
+
+</div>

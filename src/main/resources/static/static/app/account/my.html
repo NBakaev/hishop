@@ -1,0 +1,15 @@
+
+<md-input-container class="md-block" flex-gt-sm>
+    <label>Имя</label>
+    <input ng-model="currentUser.customer.firstname">
+</md-input-container>
+
+<md-input-container class="md-block" flex-gt-sm>
+    <label>Фамилия</label>
+    <input ng-model="currentUser.customer.lastname">
+</md-input-container>
+
+
+<md-button ng-click="updateCurrentUser()" class="md-button md-raised md-primary">
+    Обновить профиль
+</md-button>

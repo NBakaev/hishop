@@ -1,0 +1,48 @@
+<table class="table table-condensed table-stripped table-hover">
+    <tr>
+        <th>
+            №
+        </th>
+        <th>
+            Дата
+        </th>
+
+        <th>
+            Статус
+        </th>
+
+        <th>
+            Цена
+        </th>
+        <th>
+            Товары
+        </th>
+    </tr>
+
+    <tr ng-repeat="purchase in allPurchases">
+        <td>
+            {{$index + 1}}
+        </td>
+
+        <td>
+            {{printDate(purchase.createdInfo.createdDate)}}
+        </td>
+
+        <td>
+            {{purchase.purchaseStatus.name}}
+        </td>
+
+        <td>
+            {{purchase.price}}
+        </td>
+
+        <td>
+            <ul>
+                <li ng-repeat="good in purchase.goodList">
+                    <a href="#/good/details/{{good.good.id}}">{{good.good.name}}</a> x {{good.number}}
+                </li>
+            </ul>
+        </td>
+    </tr>
+
+</table>
