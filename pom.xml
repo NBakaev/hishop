@@ -5,7 +5,7 @@
 
     <groupId>ru.nbakaev</groupId>
     <artifactId>hishop</artifactId>
-    <version>0.2.2-RELEASE+build.15</version>
+    <version>1.0.0-RELEASE+build.15</version>
     <packaging>jar</packaging>
     <description>hiShop - e-commerce</description>
 
