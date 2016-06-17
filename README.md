@@ -28,6 +28,7 @@ Web server startup port is described in `application.properties`. You can overri
 
   - MongoDB (database)
   - mailgun credentials (send email messages with DKIM and spam filter)
+  - AWS S3 (file storage)
    
 For example
 ```bash
