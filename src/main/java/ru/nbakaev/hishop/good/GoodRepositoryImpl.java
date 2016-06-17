@@ -62,16 +62,6 @@ public class GoodRepositoryImpl implements GoodRepository {
     }
 
     @Override
-    public List<Good> getAllGoodsOnIndexPage() {
-
-        Criteria criteria = new Criteria();
-        criteria.and("showOnIndexPage").is(true);
-        Query query = new Query(criteria);
-
-        return mongoTemplate.find(query, Good.class);
-    }
-
-    @Override
     public Good getGoodById(String id) {
         Criteria criteria = new Criteria().and("id").is(id);
         Query query = new Query(criteria);

@@ -46,13 +46,6 @@ public interface GoodRepository {
     void deleteGoodById(String id);
 
     /**
-     * Get all goods which should be shown in UI (html) in main(root) page
-     *
-     * @return
-     */
-    List<Good> getAllGoodsOnIndexPage();
-
-    /**
      * Get good by id
      *
      * @param id
