@@ -67,6 +67,7 @@ docker run -d -p 5555:5555 \
     -e "spring.output.ansi.enabled=ALWAYS" \
     --name hishop1 nbakaev/hishop-api-backend:0.2.2-RELEASE_build.127763392
 ```
+There are fake keys above, do not try to use.
 
 Docker notes:
 
