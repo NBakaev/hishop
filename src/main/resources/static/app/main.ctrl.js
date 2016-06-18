@@ -35,7 +35,7 @@ angular.module('myApp')
                 });
         };
     })
-    .controller('HeaderController', function ($scope, $timeout, $mdSidenav, $log, authService, $mdDialog, $rootScope, $mdMedia ) {
+    .controller('HeaderController', function ($scope, $timeout, $mdSidenav, $log, authService, $mdDialog, $rootScope, $mdMedia, apiService) {
 
         /**
          * does current user has some role
@@ -128,7 +128,8 @@ angular.module('myApp')
             apiService.addNewUser(useraccount).then(function (data) {
                 console.log(data);
                 authService.authentificateUserWithLoginAndPassword(useraccount.username, useraccount.password);
-            });
+				location.reload();
+			});
         };
         
     });

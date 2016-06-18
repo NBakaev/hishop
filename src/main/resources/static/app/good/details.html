@@ -21,7 +21,7 @@
 
             <br>
             <md-button ng-click="addGoodToCart(good)" class="md-raised md-primary" ng-if="good.numberAvailable >= 1">В корзину</md-button>
-            <md-button ng-click="addGoodToCart(good)" class="md-raised md-primary" ng-if="good.numberAvailable < 1">товара нет в наличии</md-button>
+            <md-button ng-click="addGoodToCart(good)" class="md-raised md-primary" ng-if="good.numberAvailable < 1" disabled="">товара нет в наличии</md-button>
 
             <br><br>
             Дата создания : {{printDate(good.createdInfo.createdDate)}} <br>
