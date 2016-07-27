@@ -5,6 +5,8 @@ language: java
 jdk:
 - oraclejdk8
 before_install:
+- chmod +x "$BASE_DIR/mvnw"
+- chmod +x "/home/travis/build.sh"
 - pip install --user codecov
 after_success:
 - codecov
